@@ -1,0 +1,21 @@
+{
+  "note": "Developer colors for every figure. Okabe-Ito hues, lowered in saturation so the figures read in print and in grayscale. Gray for deterministic strategies and benchmarks.",
+  "developer": {
+    "Anthropic": "#da7756",
+    "OpenAI": "#3f8f7a",
+    "Google": "#4f7fc4",
+    "DeepSeek": "#d9a441",
+    "Meta": "#b8709a",
+    "Mistral": "#8a6fc9",
+    "Alibaba": "#2f3a6e"
+  },
+  "benchmark": "#6f6a62",
+  "strategy": "#9a958c",
+  "ink": "#1f1d1a",
+  "separator": "#e6dfd3",
+  "font": "Arial",
+  "font_size_pt": 7,
+  "panel_label_pt": 8,
+  "dpi": 600,
+  "widths_in": {"single": 3.5, "one_and_half": 5.0, "double": 7.2}
+}

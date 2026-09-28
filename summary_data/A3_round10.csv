@@ -1,0 +1,173 @@
+model_key,opponent_class,round9,round10,drop_9_to_10,display,developer
+claude-haiku-4.5,cross_play,0.28236497477983546,0.19948121938834013,0.08288375539149534,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,fixed_cooperate,0.65,0.45,0.2,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,fixed_defect,0.0,0.05,-0.05,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,other,0.13,0.11000000000000001,0.01999999999999999,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,reactive,0.6,0.4833333333333334,0.11666666666666659,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,reactive_lenient,0.3833333333333333,0.27499999999999997,0.10833333333333334,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5,self_play,0.35,0.275,0.07499999999999996,Claude Haiku 4.5,Anthropic
+claude-haiku-4.5-thinking,cross_play,0.2704239766081871,0.11868908382066276,0.15173489278752436,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,fixed_cooperate,0.7,0.25,0.44999999999999996,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,fixed_defect,0.0,0.0,0.0,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,other,0.18,0.09,0.09,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,reactive,0.5666666666666667,0.25,0.31666666666666665,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,reactive_lenient,0.35833333333333334,0.18333333333333335,0.175,Claude Haiku 4.5 (Thinking),Anthropic
+claude-haiku-4.5-thinking,self_play,0.4,0.225,0.17500000000000002,Claude Haiku 4.5 (Thinking),Anthropic
+claude-opus-4.5,fixed_cooperate,1.0,1.0,0.0,Claude Opus 4.5,Anthropic
+claude-opus-4.5,fixed_defect,0.0,0.0,0.0,Claude Opus 4.5,Anthropic
+claude-opus-4.5,other,0.39,0.2,0.19,Claude Opus 4.5,Anthropic
+claude-opus-4.5,reactive,1.0,1.0,0.0,Claude Opus 4.5,Anthropic
+claude-opus-4.5,reactive_lenient,0.6666666666666666,0.5833333333333334,0.08333333333333326,Claude Opus 4.5,Anthropic
+claude-opus-4.5,self_play,1.0,1.0,0.0,Claude Opus 4.5,Anthropic
+claude-opus-4.6,fixed_cooperate,1.0,1.0,0.0,Claude Opus 4.6,Anthropic
+claude-opus-4.6,fixed_defect,0.0,0.0,0.0,Claude Opus 4.6,Anthropic
+claude-opus-4.6,other,0.2,0.25,-0.04999999999999999,Claude Opus 4.6,Anthropic
+claude-opus-4.6,reactive,0.9166666666666666,0.9166666666666666,0.0,Claude Opus 4.6,Anthropic
+claude-opus-4.6,reactive_lenient,0.6166666666666667,0.6222222222222222,-0.005555555555555536,Claude Opus 4.6,Anthropic
+claude-opus-4.6,self_play,1.0,1.0,0.0,Claude Opus 4.6,Anthropic
+claude-sonnet-4.5,cross_play,1.0,1.0,0.0,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,fixed_cooperate,1.0,0.6,0.4,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,fixed_defect,0.0,0.0,0.0,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,other,0.38,0.15333333333333332,0.22666666666666668,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,reactive,0.8666666666666667,0.39999999999999997,0.46666666666666673,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,reactive_lenient,0.6666666666666666,0.325,0.3416666666666666,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.5,self_play,1.0,0.8,0.19999999999999996,Claude Sonnet 4.5,Anthropic
+claude-sonnet-4.6,cross_play,1.0,1.0,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,fixed_cooperate,1.0,1.0,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,fixed_defect,0.0,0.0,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,other,0.25,0.25,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,reactive,0.7999999999999999,0.7999999999999999,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,reactive_lenient,0.6166666666666667,0.6166666666666667,0.0,Claude Sonnet 4.6,Anthropic
+claude-sonnet-4.6,self_play,1.0,1.0,0.0,Claude Sonnet 4.6,Anthropic
+deepseek-r1,cross_play,0.12064204314204315,0.03527472527472528,0.08536731786731787,DeepSeek R1,DeepSeek
+deepseek-r1,fixed_cooperate,0.11764705882352941,0.0,0.11764705882352941,DeepSeek R1,DeepSeek
+deepseek-r1,fixed_defect,0.0,0.07142857142857142,-0.07142857142857142,DeepSeek R1,DeepSeek
+deepseek-r1,other,0.18666666666666668,0.013333333333333332,0.17333333333333334,DeepSeek R1,DeepSeek
+deepseek-r1,reactive,0.43846153846153846,0.05555555555555555,0.3829059829059829,DeepSeek R1,DeepSeek
+deepseek-r1,reactive_lenient,0.37310340802987857,0.00980392156862745,0.3632994864612511,DeepSeek R1,DeepSeek
+deepseek-r1,self_play,0.26666666666666666,0.06666666666666667,0.2,DeepSeek R1,DeepSeek
+deepseek-v3,cross_play,0.18982726423902896,0.10471755368814192,0.08510971055088704,DeepSeek V3,DeepSeek
+deepseek-v3,fixed_cooperate,0.5882352941176471,0.35294117647058826,0.23529411764705882,DeepSeek V3,DeepSeek
+deepseek-v3,fixed_defect,0.0,0.0,0.0,DeepSeek V3,DeepSeek
+deepseek-v3,other,0.14076797385620915,0.09026487788097695,0.0505030959752322,DeepSeek V3,DeepSeek
+deepseek-v3,reactive,0.26100217864923747,0.11960784313725491,0.14139433551198255,DeepSeek V3,DeepSeek
+deepseek-v3,reactive_lenient,0.2658538629126865,0.18157365510306686,0.08428020780961962,DeepSeek V3,DeepSeek
+deepseek-v3,self_play,0.075,0.025,0.049999999999999996,DeepSeek V3,DeepSeek
+gemini-2.0-flash,cross_play,0.07107757137942897,0.01100877192982456,0.06006879944960441,Gemini 2.0 Flash,Google
+gemini-2.0-flash,fixed_cooperate,0.05,0.0,0.05,Gemini 2.0 Flash,Google
+gemini-2.0-flash,fixed_defect,0.1,0.0,0.1,Gemini 2.0 Flash,Google
+gemini-2.0-flash,other,0.02,0.01,0.01,Gemini 2.0 Flash,Google
+gemini-2.0-flash,reactive,0.08333333333333333,0.03333333333333333,0.049999999999999996,Gemini 2.0 Flash,Google
+gemini-2.0-flash,reactive_lenient,0.041666666666666664,0.0,0.041666666666666664,Gemini 2.0 Flash,Google
+gemini-2.0-flash,self_play,0.05,0.0,0.05,Gemini 2.0 Flash,Google
+gemini-2.5-flash,cross_play,0.16260222892575835,0.07738017429193901,0.08522205463381934,Gemini 2.5 Flash,Google
+gemini-2.5-flash,fixed_cooperate,0.35,0.25,0.09999999999999998,Gemini 2.5 Flash,Google
+gemini-2.5-flash,fixed_defect,0.0,0.0,0.0,Gemini 2.5 Flash,Google
+gemini-2.5-flash,other,0.15999999999999998,0.06,0.09999999999999998,Gemini 2.5 Flash,Google
+gemini-2.5-flash,reactive,0.2219298245614035,0.1368421052631579,0.0850877192982456,Gemini 2.5 Flash,Google
+gemini-2.5-flash,reactive_lenient,0.1922723475355054,0.125125313283208,0.0671470342522974,Gemini 2.5 Flash,Google
+gemini-2.5-flash,self_play,0.225,0.1,0.125,Gemini 2.5 Flash,Google
+gemini-2.5-flash-thinking,cross_play,0.059708994708994705,0.0,0.059708994708994705,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,fixed_cooperate,0.0,0.0,0.0,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,fixed_defect,0.0,0.0,0.0,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,other,0.04,0.0,0.04,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,reactive,0.15,0.0,0.15,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,reactive_lenient,0.12543859649122807,0.02543859649122807,0.1,Gemini 2.5 Flash (Thinking),Google
+gemini-2.5-flash-thinking,self_play,0.025,0.0,0.025,Gemini 2.5 Flash (Thinking),Google
+gemini-3-flash,cross_play,0.35904673070307747,0.05584171275347746,0.3032050179496,Gemini 3 Flash,Google
+gemini-3-flash,fixed_cooperate,1.0,0.3,0.7,Gemini 3 Flash,Google
+gemini-3-flash,fixed_defect,0.0,0.0,0.0,Gemini 3 Flash,Google
+gemini-3-flash,other,0.37,0.03,0.33999999999999997,Gemini 3 Flash,Google
+gemini-3-flash,reactive,0.8166666666666668,0.13333333333333333,0.6833333333333335,Gemini 3 Flash,Google
+gemini-3-flash,reactive_lenient,0.6083333333333333,0.10833333333333334,0.49999999999999994,Gemini 3 Flash,Google
+gemini-3-flash,self_play,0.95,0.175,0.7749999999999999,Gemini 3 Flash,Google
+gemini-3-pro,cross_play,1.0,0.0,1.0,Gemini 3 Pro,Google
+gemini-3-pro,fixed_cooperate,1.0,0.0,1.0,Gemini 3 Pro,Google
+gemini-3-pro,fixed_defect,0.0,0.0,0.0,Gemini 3 Pro,Google
+gemini-3-pro,other,0.4666666666666666,0.0,0.4666666666666666,Gemini 3 Pro,Google
+gemini-3-pro,reactive,0.9166666666666666,0.0,0.9166666666666666,Gemini 3 Pro,Google
+gemini-3-pro,reactive_lenient,0.4361111111111111,0.0,0.4361111111111111,Gemini 3 Pro,Google
+gemini-3-pro,self_play,0.5,0.0,0.5,Gemini 3 Pro,Google
+gemini-3.1-pro,cross_play,1.0,0.0,1.0,Gemini 3.1 Pro,Google
+gemini-3.1-pro,fixed_cooperate,0.75,0.0,0.75,Gemini 3.1 Pro,Google
+gemini-3.1-pro,fixed_defect,0.0,0.0,0.0,Gemini 3.1 Pro,Google
+gemini-3.1-pro,other,0.16666666666666666,0.0,0.16666666666666666,Gemini 3.1 Pro,Google
+gemini-3.1-pro,reactive,0.5,0.0,0.5,Gemini 3.1 Pro,Google
+gemini-3.1-pro,reactive_lenient,0.16666666666666666,0.0,0.16666666666666666,Gemini 3.1 Pro,Google
+gemini-3.1-pro,self_play,0.6666666666666666,0.0,0.6666666666666666,Gemini 3.1 Pro,Google
+gpt-4.1,fixed_cooperate,0.75,0.0,0.75,GPT-4.1,OpenAI
+gpt-4.1,fixed_defect,0.0,0.0,0.0,GPT-4.1,OpenAI
+gpt-4.1,other,0.2,0.0,0.2,GPT-4.1,OpenAI
+gpt-4.1,reactive,0.8333333333333334,0.08333333333333333,0.75,GPT-4.1,OpenAI
+gpt-4.1,reactive_lenient,0.5,0.0,0.5,GPT-4.1,OpenAI
+gpt-4.1,self_play,0.75,0.0,0.75,GPT-4.1,OpenAI
+gpt-4.1-mini,cross_play,0.22700013923698134,0.12564327485380117,0.10135686438318017,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,fixed_cooperate,0.5263157894736842,0.3157894736842105,0.21052631578947367,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,fixed_defect,0.06666666666666667,0.0,0.06666666666666667,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,other,0.12631578947368421,0.07492260061919505,0.051393188854489166,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,reactive,0.5023506478614838,0.2991629400298131,0.20318770783167067,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,reactive_lenient,0.4259259259259259,0.23148148148148148,0.1944444444444444,GPT-4.1 Mini,OpenAI
+gpt-4.1-mini,self_play,0.3,0.25,0.04999999999999999,GPT-4.1 Mini,OpenAI
+gpt-4.1-nano,cross_play,0.0681390977443609,0.05338345864661654,0.014755639097744362,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,fixed_cooperate,0.17647058823529413,0.17647058823529413,0.0,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,fixed_defect,0.0,0.0,0.0,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,other,0.2004093567251462,0.1482456140350877,0.052163742690058496,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,reactive,0.12693498452012383,0.10732714138286893,0.0196078431372549,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,reactive_lenient,0.15462962962962964,0.16296296296296295,-0.008333333333333304,GPT-4.1 Nano,OpenAI
+gpt-4.1-nano,self_play,0.0,0.027777777777777776,-0.027777777777777776,GPT-4.1 Nano,OpenAI
+gpt-4o-mini,cross_play,0.3741617933723197,0.30879142300194934,0.06537037037037036,GPT-4o Mini,OpenAI
+gpt-4o-mini,fixed_cooperate,0.6842105263157895,0.5789473684210527,0.10526315789473684,GPT-4o Mini,OpenAI
+gpt-4o-mini,fixed_defect,0.10526315789473684,0.0,0.10526315789473684,GPT-4o Mini,OpenAI
+gpt-4o-mini,other,0.26766081871345027,0.1954970760233918,0.07216374269005846,GPT-4o Mini,OpenAI
+gpt-4o-mini,reactive,0.6289473684210526,0.5614035087719298,0.0675438596491228,GPT-4o Mini,OpenAI
+gpt-4o-mini,reactive_lenient,0.39766081871345027,0.3436159844054581,0.05404483430799217,GPT-4o Mini,OpenAI
+gpt-4o-mini,self_play,0.65,0.675,-0.025000000000000022,GPT-4o Mini,OpenAI
+gpt-5-mini,cross_play,0.03478483791177289,0.03016569200779727,0.004619145903975622,GPT-5 Mini,OpenAI
+gpt-5-mini,fixed_cooperate,0.0,0.0,0.0,GPT-5 Mini,OpenAI
+gpt-5-mini,fixed_defect,0.0,0.0,0.0,GPT-5 Mini,OpenAI
+gpt-5-mini,other,0.0,0.023529411764705882,-0.023529411764705882,GPT-5 Mini,OpenAI
+gpt-5-mini,reactive,0.018518518518518517,0.018518518518518517,0.0,GPT-5 Mini,OpenAI
+gpt-5-mini,reactive_lenient,0.02543859649122807,0.0,0.02543859649122807,GPT-5 Mini,OpenAI
+gpt-5-mini,self_play,0.0,0.0,0.0,GPT-5 Mini,OpenAI
+gpt-5-nano,cross_play,0.008270676691729323,0.0037037037037037034,0.004566972988025619,GPT-5 Nano,OpenAI
+gpt-5-nano,fixed_cooperate,0.0,0.0,0.0,GPT-5 Nano,OpenAI
+gpt-5-nano,fixed_defect,0.0,0.0,0.0,GPT-5 Nano,OpenAI
+gpt-5-nano,other,0.0125,0.01111111111111111,0.001388888888888891,GPT-5 Nano,OpenAI
+gpt-5-nano,reactive,0.041353383458646614,0.017543859649122806,0.023809523809523808,GPT-5 Nano,OpenAI
+gpt-5-nano,reactive_lenient,0.00980392156862745,0.0,0.00980392156862745,GPT-5 Nano,OpenAI
+gpt-5-nano,self_play,0.05555555555555555,0.0,0.05555555555555555,GPT-5 Nano,OpenAI
+gpt-5.3,cross_play,0.5,0.0,0.5,GPT-5.3,OpenAI
+gpt-5.3,fixed_cooperate,0.0,0.0,0.0,GPT-5.3,OpenAI
+gpt-5.3,fixed_defect,0.0,0.0,0.0,GPT-5.3,OpenAI
+gpt-5.3,other,0.0,0.0,0.0,GPT-5.3,OpenAI
+gpt-5.3,reactive,0.16666666666666666,0.0,0.16666666666666666,GPT-5.3,OpenAI
+gpt-5.3,reactive_lenient,0.0,0.0,0.0,GPT-5.3,OpenAI
+gpt-5.3,self_play,0.0,0.0,0.0,GPT-5.3,OpenAI
+gpt-5.4,cross_play,0.5,0.5,0.0,GPT-5.4,OpenAI
+gpt-5.4,fixed_cooperate,0.5,0.25,0.25,GPT-5.4,OpenAI
+gpt-5.4,fixed_defect,0.0,0.0,0.0,GPT-5.4,OpenAI
+gpt-5.4,other,0.2,0.2,0.0,GPT-5.4,OpenAI
+gpt-5.4,reactive,0.5833333333333334,0.5833333333333334,0.0,GPT-5.4,OpenAI
+gpt-5.4,reactive_lenient,0.38055555555555554,0.21388888888888888,0.16666666666666666,GPT-5.4,OpenAI
+gpt-5.4,self_play,0.6,0.5,0.09999999999999998,GPT-5.4,OpenAI
+llama-3.3-70b,cross_play,0.15617396621266588,0.08821123321123321,0.06796273300143267,LLaMA 3.3 70B,Meta
+llama-3.3-70b,fixed_cooperate,0.0,0.0,0.0,LLaMA 3.3 70B,Meta
+llama-3.3-70b,fixed_defect,0.35294117647058826,0.11764705882352941,0.23529411764705885,LLaMA 3.3 70B,Meta
+llama-3.3-70b,other,0.1880718954248366,0.0798202614379085,0.1082516339869281,LLaMA 3.3 70B,Meta
+llama-3.3-70b,reactive,0.18055555555555555,0.11451525054466231,0.06604030501089324,LLaMA 3.3 70B,Meta
+llama-3.3-70b,reactive_lenient,0.12156862745098039,0.12418300653594772,-0.002614379084967325,LLaMA 3.3 70B,Meta
+llama-3.3-70b,self_play,0.16666666666666666,0.1111111111111111,0.05555555555555555,LLaMA 3.3 70B,Meta
+ministral-14b,cross_play,0.18836547439488616,0.17922412554765496,0.009141348847231195,Ministral 14B,Mistral
+ministral-14b,fixed_cooperate,0.0,0.13333333333333333,-0.13333333333333333,Ministral 14B,Mistral
+ministral-14b,fixed_defect,0.125,0.1875,-0.0625,Ministral 14B,Mistral
+ministral-14b,other,0.15196078431372548,0.1290032679738562,0.022957516339869283,Ministral 14B,Mistral
+ministral-14b,reactive,0.3029927760577915,0.22463020295837632,0.07836257309941519,Ministral 14B,Mistral
+ministral-14b,reactive_lenient,0.2622140522875817,0.20580065359477126,0.05641339869281045,Ministral 14B,Mistral
+ministral-14b,self_play,0.2857142857142857,0.10714285714285714,0.17857142857142855,Ministral 14B,Mistral
+qwen3.5-flash,cross_play,0.20340455840455843,0.008333333333333333,0.1950712250712251,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,fixed_cooperate,0.7692307692307693,0.0,0.7692307692307693,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,fixed_defect,0.0,0.0,0.0,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,other,0.1955316742081448,0.02426470588235294,0.17126696832579186,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,reactive,0.5535130718954248,0.0196078431372549,0.5339052287581698,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,reactive_lenient,0.5263888888888889,0.010416666666666666,0.5159722222222223,Qwen 3.5 Flash,Alibaba
+qwen3.5-flash,self_play,0.36666666666666664,0.03333333333333333,0.3333333333333333,Qwen 3.5 Flash,Alibaba

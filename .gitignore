@@ -1,0 +1,5 @@
+# The raw corpus from Zenodo, API keys, and files Python creates locally
+raw_data/
+data_collection/.env
+__pycache__/
+*.pyc

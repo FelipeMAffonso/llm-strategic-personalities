@@ -1,0 +1,12 @@
+# The analyses, the Supplementary tables and the figures (Python 3.12; the versions that wrote the released results)
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+statsmodels==0.15.0
+matplotlib==3.11.1
+
+# The reasoning-text clustering and its robustness check (analysis/reasoning_text_clustering.py and
+# analysis/reasoning_text_robustness.py; bash reproduce.sh --with-clustering) also need:
+#   pip install scikit-learn umap-learn sentence-transformers
+# Data collection with the model APIs (data_collection/) also needs the provider libraries:
+#   pip install anthropic openai google-genai google-auth

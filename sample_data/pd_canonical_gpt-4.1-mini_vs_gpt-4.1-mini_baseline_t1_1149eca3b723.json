@@ -1,0 +1,250 @@
+{
+  "game_id": "pd_canonical",
+  "game_name": "Prisoner's Dilemma (Canonical Axelrod)",
+  "game_category": "cooperation",
+  "game_type": "simultaneous",
+  "model_key": "gpt-4.1-mini",
+  "opponent": "gpt-4.1-mini",
+  "matchup_type": "self_play",
+  "condition": "baseline",
+  "trial_num": 1,
+  "num_rounds": 10,
+  "player0_id": "gpt-4.1-mini",
+  "player1_id": "gpt-4.1-mini",
+  "player0_total_payoff": 30.0,
+  "player1_total_payoff": 30.0,
+  "label_map": {
+    "F": "cooperate",
+    "J": "defect"
+  },
+  "input_tokens": 7270,
+  "output_tokens": 2082,
+  "cost_usd": 0.009359,
+  "cache_hit": false,
+  "timestamp": "2026-03-07 16:33:44",
+  "cooperation_rate": 1.0,
+  "joint_cooperation_rate": 1.0,
+  "mean_choice_p0": "cooperate",
+  "mean_choice_p1": "cooperate",
+  "match_detail": {
+    "game_id": "pd_canonical",
+    "game_name": "Prisoner's Dilemma (Canonical Axelrod)",
+    "game_category": "cooperation",
+    "players": {
+      "0": "gpt-4.1-mini",
+      "1": "gpt-4.1-mini"
+    },
+    "num_rounds": 10,
+    "rounds": [
+      {
+        "round_num": 1,
+        "choices": {
+          "0": "In repeated games like this, a common strategy is to start cooperatively to see if the other player will also cooperate. Since Option F yields a mutual reward of 3 points if both players choose it, it encourages cooperation.\n\nTherefore, for the first round, choosing Option F is a good choice to promote mutual benefit.\n\n<answer>Option F</answer>",
+          "1": "<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "In repeated games like this, a common strategy is to start cooperatively to see if the other player will also cooperate. Since Option F yields a mutual reward of 3 points if both players choose it, it encourages cooperation.\n\nTherefore, for the first round, choosing Option F is a good choice to promote mutual benefit.\n\n<answer>Option F</answer>",
+          "1": "<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 2,
+        "choices": {
+          "0": "In the repeated game, a common strategy is to start cooperatively (Option F) and then replicate the opponent's previous move in subsequent rounds to encourage mutual cooperation and maximize points.\n\nSince in round 1 both chose Option F, both players cooperated.\n\nTherefore, in round 2, I should continue cooperating by choosing Option F again.\n\n<answer>Option F</answer>",
+          "1": "Since in round 1 both chose Option F and both got 3 points, a cooperative strategy might be best to continue gaining mutual benefits.\n\nTherefore, I choose Option F again.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "In the repeated game, a common strategy is to start cooperatively (Option F) and then replicate the opponent's previous move in subsequent rounds to encourage mutual cooperation and maximize points.\n\nSince in round 1 both chose Option F, both players cooperated.\n\nTherefore, in round 2, I should continue cooperating by choosing Option F again.\n\n<answer>Option F</answer>",
+          "1": "Since in round 1 both chose Option F and both got 3 points, a cooperative strategy might be best to continue gaining mutual benefits.\n\nTherefore, I choose Option F again.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 3,
+        "choices": {
+          "0": "Since both players have consistently chosen Option F in the first two rounds, resulting in an equal and fair point gain, it might be beneficial to maintain cooperation by choosing Option F again in round 3. This would continue the mutual benefit and avoid risking a loss by choosing Option J.\n\n<answer>Option F</answer>",
+          "1": "Since both you and the other player have chosen Option F in the first two rounds, resulting in mutual cooperation and equal wins of 3 points each round, it might be beneficial to continue this cooperative strategy to maintain steady points for both players.\n\nChoosing Option J now could give you a higher payoff this round (5 points if the other player chooses F), but it might damage the mutual cooperation and provoke the other player to choose J in subsequent rounds, which would reduce both players' points.\n\nTherefore, choosing Option F in round 3 seems like the optimal strategy to maintain cooperation and maximize total points over the 10 rounds.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Since both players have consistently chosen Option F in the first two rounds, resulting in an equal and fair point gain, it might be beneficial to maintain cooperation by choosing Option F again in round 3. This would continue the mutual benefit and avoid risking a loss by choosing Option J.\n\n<answer>Option F</answer>",
+          "1": "Since both you and the other player have chosen Option F in the first two rounds, resulting in mutual cooperation and equal wins of 3 points each round, it might be beneficial to continue this cooperative strategy to maintain steady points for both players.\n\nChoosing Option J now could give you a higher payoff this round (5 points if the other player chooses F), but it might damage the mutual cooperation and provoke the other player to choose J in subsequent rounds, which would reduce both players' points.\n\nTherefore, choosing Option F in round 3 seems like the optimal strategy to maintain cooperation and maximize total points over the 10 rounds.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 4,
+        "choices": {
+          "0": "Given that the other player has consistently chosen Option F in the first three rounds, and both players have received 3 points each time, continuing with Option F is a stable strategy that maintains mutual cooperation and steady points.\n\nChoosing Option J now would give you 5 points if the other player sticks to Option F, but it would also break the cooperative pattern and might provoke retaliation in future rounds.\n\nTherefore, the best choice for round 4 is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Given that both players have consistently chosen Option F in the first three rounds, resulting in mutual cooperation and steady points for both, it is sensible to continue choosing Option F to maintain this cooperation and maximize collective gain.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Given that the other player has consistently chosen Option F in the first three rounds, and both players have received 3 points each time, continuing with Option F is a stable strategy that maintains mutual cooperation and steady points.\n\nChoosing Option J now would give you 5 points if the other player sticks to Option F, but it would also break the cooperative pattern and might provoke retaliation in future rounds.\n\nTherefore, the best choice for round 4 is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Given that both players have consistently chosen Option F in the first three rounds, resulting in mutual cooperation and steady points for both, it is sensible to continue choosing Option F to maintain this cooperation and maximize collective gain.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 5,
+        "choices": {
+          "0": "Since both players have been cooperating by choosing Option F in all previous rounds, continuing to choose Option F would maintain mutual cooperation and yield steady points for both players. Switching to Option J might give you a higher payoff this round but could damage trust and lead to worse outcomes in subsequent rounds. Therefore, the best choice is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Up to now, both players have consistently chosen Option F, resulting in mutual cooperation and moderate points (3 each per round). If I continue choosing Option F, the cooperation is maintained, and I continue to earn 3 points per round.\n\nIf I switch to Option J now, I can win 5 points this round, a higher payoff, but it gives the other player 0 points, which may cause the other player to retaliate in the next rounds by choosing Option J as well. Over 10 rounds, sustained mutual cooperation (Option F each round) yields a total of 30 points, whereas defecting now might gain 5 points this round but risk future losses.\n\nSince the game is repeated for 10 rounds and we are only at round 5, it is rational to maintain cooperation by choosing Option F to maximize total points.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Since both players have been cooperating by choosing Option F in all previous rounds, continuing to choose Option F would maintain mutual cooperation and yield steady points for both players. Switching to Option J might give you a higher payoff this round but could damage trust and lead to worse outcomes in subsequent rounds. Therefore, the best choice is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Up to now, both players have consistently chosen Option F, resulting in mutual cooperation and moderate points (3 each per round). If I continue choosing Option F, the cooperation is maintained, and I continue to earn 3 points per round.\n\nIf I switch to Option J now, I can win 5 points this round, a higher payoff, but it gives the other player 0 points, which may cause the other player to retaliate in the next rounds by choosing Option J as well. Over 10 rounds, sustained mutual cooperation (Option F each round) yields a total of 30 points, whereas defecting now might gain 5 points this round but risk future losses.\n\nSince the game is repeated for 10 rounds and we are only at round 5, it is rational to maintain cooperation by choosing Option F to maximize total points.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 6,
+        "choices": {
+          "0": "So far, both players have chosen Option F in every round, each earning 3 points per round. This shows mutual cooperation resulting in steady, moderate rewards for both.\n\nIf I choose Option J this round, and the other player sticks with Option F, I will get 5 points while the other player gets 0 points. This will maximize my points this round but risks the other player changing their strategy in future rounds.\n\nIf I continue choosing Option F, both players keep earning 3 points, maintaining cooperation.\n\nGiven the pattern of cooperation and the risk of breaking it, it is strategic to continue cooperating by choosing Option F.\n\n<answer>Option F</answer>",
+          "1": "Given the pattern so far, both you and the other player have chosen Option F consistently, resulting in mutual cooperation and equal points (3 points each per round). This is a stable and mutually beneficial strategy.\n\nChoosing Option J now could yield you 5 points if the other player sticks with Option F, but it would cause the other player to get 0, potentially breaking the trust and leading to less cooperative outcomes in subsequent rounds.\n\nSince you are only at round 6 out of 10, maintaining cooperation with Option F is likely the best choice to keep accumulating points steadily without risk.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "So far, both players have chosen Option F in every round, each earning 3 points per round. This shows mutual cooperation resulting in steady, moderate rewards for both.\n\nIf I choose Option J this round, and the other player sticks with Option F, I will get 5 points while the other player gets 0 points. This will maximize my points this round but risks the other player changing their strategy in future rounds.\n\nIf I continue choosing Option F, both players keep earning 3 points, maintaining cooperation.\n\nGiven the pattern of cooperation and the risk of breaking it, it is strategic to continue cooperating by choosing Option F.\n\n<answer>Option F</answer>",
+          "1": "Given the pattern so far, both you and the other player have chosen Option F consistently, resulting in mutual cooperation and equal points (3 points each per round). This is a stable and mutually beneficial strategy.\n\nChoosing Option J now could yield you 5 points if the other player sticks with Option F, but it would cause the other player to get 0, potentially breaking the trust and leading to less cooperative outcomes in subsequent rounds.\n\nSince you are only at round 6 out of 10, maintaining cooperation with Option F is likely the best choice to keep accumulating points steadily without risk.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 7,
+        "choices": {
+          "0": "Since both you and the other player have consistently chosen Option F in the previous rounds, resulting in a fair and stable outcome where both players earn 3 points each round, it makes sense to continue this pattern to maintain mutual cooperation and consistent points.\n\nChoosing Option J now could risk the other player continuing with Option F, giving you more points (5 points), but also risks lowering trust and possibly causing retaliation in future rounds.\n\nGiven the repeated cooperation so far, the best choice to maintain the current beneficial outcome is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Given that both you and the other player have consistently chosen Option F in the previous 6 rounds, resulting in mutual cooperation and equal points, it is beneficial to maintain this cooperation to continue earning steady points. Switching to Option J now could risk the other player continuing with Option F, which would give you more points, but if the other player switches in response, it could lead to a worse outcome.\n\nTherefore, the best choice is to continue with Option F.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Since both you and the other player have consistently chosen Option F in the previous rounds, resulting in a fair and stable outcome where both players earn 3 points each round, it makes sense to continue this pattern to maintain mutual cooperation and consistent points.\n\nChoosing Option J now could risk the other player continuing with Option F, giving you more points (5 points), but also risks lowering trust and possibly causing retaliation in future rounds.\n\nGiven the repeated cooperation so far, the best choice to maintain the current beneficial outcome is to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Given that both you and the other player have consistently chosen Option F in the previous 6 rounds, resulting in mutual cooperation and equal points, it is beneficial to maintain this cooperation to continue earning steady points. Switching to Option J now could risk the other player continuing with Option F, which would give you more points, but if the other player switches in response, it could lead to a worse outcome.\n\nTherefore, the best choice is to continue with Option F.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 8,
+        "choices": {
+          "0": "Since both players have consistently chosen Option F in the previous rounds, resulting in mutual benefit (3 points each), it is reasonable to continue this cooperative strategy to maintain the equilibrium.\n\nChoosing Option J now might risk losing points if the other player continues to choose Option F, granting them 0 points and giving you 5 points, which could be seen as aggressive and might provoke retaliation in later rounds.\n\nTherefore, the optimal choice is likely to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Since both you and the other player have consistently chosen Option F for seven rounds, resulting in steady mutual gains of 3 points each per round, continuing with Option F in round 8 will likely maintain this cooperative outcome.\n\nSwitching to Option J now could risk losing points if the other player continues to choose Option F, as you would get 5 points but they get 0, which might damage cooperation. Given the history, the safest and most mutually beneficial choice is to keep choosing Option F.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Since both players have consistently chosen Option F in the previous rounds, resulting in mutual benefit (3 points each), it is reasonable to continue this cooperative strategy to maintain the equilibrium.\n\nChoosing Option J now might risk losing points if the other player continues to choose Option F, granting them 0 points and giving you 5 points, which could be seen as aggressive and might provoke retaliation in later rounds.\n\nTherefore, the optimal choice is likely to continue with Option F.\n\n<answer>Option F</answer>",
+          "1": "Since both you and the other player have consistently chosen Option F for seven rounds, resulting in steady mutual gains of 3 points each per round, continuing with Option F in round 8 will likely maintain this cooperative outcome.\n\nSwitching to Option J now could risk losing points if the other player continues to choose Option F, as you would get 5 points but they get 0, which might damage cooperation. Given the history, the safest and most mutually beneficial choice is to keep choosing Option F.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 9,
+        "choices": {
+          "0": "In the first 8 rounds, both players have consistently chosen Option F, resulting in mutually beneficial outcomes where both players win 3 points per round.\n\nIf I continue to choose Option F in round 9 while the other player also chooses Option F, I will again win 3 points, maintaining the cooperative strategy.\n\nIf I choose Option J now:\n- If the other player continues to choose Option F, I will win 5 points but the other player will lose points, which could lead to tension or retaliation in the final round.\n- If the other player switches to Option J, I will only win 1 point, less than the 3 points from continuing to play Option F.\n\nConsidering that cooperation has been maintained so far and continuing it is beneficial, the best choice in round 9 is to also choose Option F.\n\n<answer>Option F</answer>",
+          "1": "So far, both players have chosen Option F in every round, resulting in mutual cooperation with 3 points each per round. This has been a stable and positive outcome for both.\n\nIf I continue choosing Option F:\n- Both players would get 3 points again in round 9.\n\nIf I switch to Option J:\n- I would get 5 points, while the other player gets 0 points.\n- However, this could risk the other player's trust and lead them to choose Option J in future rounds, potentially lowering my future payoffs.\n\nGiven the repeated interaction and the history of cooperation, it is generally beneficial to maintain cooperation to maximize total points over all rounds.\n\nTherefore, the best choice to sustain cooperation and maximize overall points is to choose Option F.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "In the first 8 rounds, both players have consistently chosen Option F, resulting in mutually beneficial outcomes where both players win 3 points per round.\n\nIf I continue to choose Option F in round 9 while the other player also chooses Option F, I will again win 3 points, maintaining the cooperative strategy.\n\nIf I choose Option J now:\n- If the other player continues to choose Option F, I will win 5 points but the other player will lose points, which could lead to tension or retaliation in the final round.\n- If the other player switches to Option J, I will only win 1 point, less than the 3 points from continuing to play Option F.\n\nConsidering that cooperation has been maintained so far and continuing it is beneficial, the best choice in round 9 is to also choose Option F.\n\n<answer>Option F</answer>",
+          "1": "So far, both players have chosen Option F in every round, resulting in mutual cooperation with 3 points each per round. This has been a stable and positive outcome for both.\n\nIf I continue choosing Option F:\n- Both players would get 3 points again in round 9.\n\nIf I switch to Option J:\n- I would get 5 points, while the other player gets 0 points.\n- However, this could risk the other player's trust and lead them to choose Option J in future rounds, potentially lowering my future payoffs.\n\nGiven the repeated interaction and the history of cooperation, it is generally beneficial to maintain cooperation to maximize total points over all rounds.\n\nTherefore, the best choice to sustain cooperation and maximize overall points is to choose Option F.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 10,
+        "choices": {
+          "0": "Up to round 9, both you and the other player consistently chose Option F, earning 3 points each per round. The cooperation has been stable and beneficial for both players. \n\nChoosing Option J in the last round could give you 5 points if the other player sticks to Option F, but it would also risk damaging the cooperative pattern and potentially reducing the total combined score if the other player anticipates this and changes their choice.\n\nGiven the established pattern and the mutual benefits of cooperation, it is best to continue choosing Option F.\n\n<answer>Option F</answer>",
+          "1": "Up to round 9, both players have consistently chosen Option F, resulting in both of you earning 3 points per round. This strategy has resulted in a stable outcome with mutually beneficial payoffs.\n\nChoosing Option F again in round 10 would continue this pattern and yield 3 points for both players.\n\nIf I were to choose Option J in round 10 while the other player chooses Option F, I would gain 5 points but the other player would get 0 points. While this would increase my points for this round, it may break the established cooperation and trust.\n\nGiven that the other player has chosen Option F each time so far, it is reasonable to continue cooperating by choosing Option F.\n\n<answer>Option F</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Up to round 9, both you and the other player consistently chose Option F, earning 3 points each per round. The cooperation has been stable and beneficial for both players. \n\nChoosing Option J in the last round could give you 5 points if the other player sticks to Option F, but it would also risk damaging the cooperative pattern and potentially reducing the total combined score if the other player anticipates this and changes their choice.\n\nGiven the established pattern and the mutual benefits of cooperation, it is best to continue choosing Option F.\n\n<answer>Option F</answer>",
+          "1": "Up to round 9, both players have consistently chosen Option F, resulting in both of you earning 3 points per round. This strategy has resulted in a stable outcome with mutually beneficial payoffs.\n\nChoosing Option F again in round 10 would continue this pattern and yield 3 points for both players.\n\nIf I were to choose Option J in round 10 while the other player chooses Option F, I would gain 5 points but the other player would get 0 points. While this would increase my points for this round, it may break the established cooperation and trust.\n\nGiven that the other player has chosen Option F each time so far, it is reasonable to continue cooperating by choosing Option F.\n\n<answer>Option F</answer>"
+        },
+        "thinking": {}
+      }
+    ],
+    "total_payoffs": {
+      "0": 30.0,
+      "1": 30.0
+    },
+    "label_map": {
+      "F": "cooperate",
+      "J": "defect"
+    },
+    "metadata": {}
+  }
+}

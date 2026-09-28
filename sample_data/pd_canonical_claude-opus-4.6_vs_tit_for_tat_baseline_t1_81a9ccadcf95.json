@@ -1,0 +1,250 @@
+{
+  "game_id": "pd_canonical",
+  "game_name": "Prisoner's Dilemma (Canonical Axelrod)",
+  "game_category": "cooperation",
+  "game_type": "simultaneous",
+  "model_key": "claude-opus-4.6",
+  "opponent": "tit_for_tat",
+  "matchup_type": "model_vs_strategy",
+  "condition": "baseline",
+  "trial_num": 1,
+  "num_rounds": 10,
+  "player0_id": "claude-opus-4.6",
+  "player1_id": "tit_for_tat",
+  "player0_total_payoff": 30.0,
+  "player1_total_payoff": 30.0,
+  "label_map": {
+    "Q": "cooperate",
+    "X": "defect"
+  },
+  "input_tokens": 3970,
+  "output_tokens": 1903,
+  "cost_usd": 0.067425,
+  "cache_hit": false,
+  "timestamp": "2026-03-09 12:52:46",
+  "cooperation_rate": 1.0,
+  "joint_cooperation_rate": 1.0,
+  "mean_choice_p0": "cooperate",
+  "mean_choice_p1": "cooperate",
+  "match_detail": {
+    "game_id": "pd_canonical",
+    "game_name": "Prisoner's Dilemma (Canonical Axelrod)",
+    "game_category": "cooperation",
+    "players": {
+      "0": "claude-opus-4.6",
+      "1": "tit_for_tat"
+    },
+    "num_rounds": 10,
+    "rounds": [
+      {
+        "round_num": 1,
+        "choices": {
+          "0": "I need to think about this strategically. This is essentially a Prisoner's Dilemma game repeated 10 times.\n\nLet me analyze the payoff matrix:\n- Mutual cooperation (Q,Q): 3,3\n- I defect, they cooperate (X,Q): 5,0\n- I cooperate, they defect (Q,X): 0,5\n- Mutual defection (X,X): 1,1\n\nIn a repeated Prisoner's Dilemma with a known number of rounds, the game theory prediction through backward induction is mutual defection. However, in practice, cooperation can emerge and lead to much better outcomes for both players.\n\nStarting with cooperation (Option Q) signals willingness to cooperate and can establish a mutually beneficial pattern. A tit-for-tat strategy (start with cooperation, then mirror the other player's previous move) is one of the most successful strategies in repeated Prisoner's Dilemma games.\n\nIf we both cooperate for all 10 rounds, we each get 30 points. If we both defect for all 10 rounds, we each get only 10 points. The cooperative outcome is far superior.\n\nI'll start with cooperation to signal good faith and encourage mutual cooperation throughout the game.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "I need to think about this strategically. This is essentially a Prisoner's Dilemma game repeated 10 times.\n\nLet me analyze the payoff matrix:\n- Mutual cooperation (Q,Q): 3,3\n- I defect, they cooperate (X,Q): 5,0\n- I cooperate, they defect (Q,X): 0,5\n- Mutual defection (X,X): 1,1\n\nIn a repeated Prisoner's Dilemma with a known number of rounds, the game theory prediction through backward induction is mutual defection. However, in practice, cooperation can emerge and lead to much better outcomes for both players.\n\nStarting with cooperation (Option Q) signals willingness to cooperate and can establish a mutually beneficial pattern. A tit-for-tat strategy (start with cooperation, then mirror the other player's previous move) is one of the most successful strategies in repeated Prisoner's Dilemma games.\n\nIf we both cooperate for all 10 rounds, we each get 30 points. If we both defect for all 10 rounds, we each get only 10 points. The cooperative outcome is far superior.\n\nI'll start with cooperation to signal good faith and encourage mutual cooperation throughout the game.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 2,
+        "choices": {
+          "0": "I need to think about this strategically. In round 1, both my opponent and I chose Option Q, resulting in mutual cooperation (3 points each). This is a good sign - it suggests my opponent may be willing to cooperate.\n\nThis game is essentially a Prisoner's Dilemma. The mutual cooperation outcome (Q,Q) giving 3 points each is better for both of us than mutual defection (X,X) giving 1 point each. However, there's always the temptation to defect for 5 points.\n\nSince we have 10 rounds and my opponent cooperated in round 1, I want to maintain this cooperative relationship. A tit-for-tat or cooperative strategy tends to perform well in iterated Prisoner's Dilemma games. By continuing to choose Q, I signal my willingness to cooperate, which can lead to sustained mutual cooperation and higher total payoffs (potentially 30 points over 10 rounds vs. 10 points with mutual defection).\n\nI'll continue cooperating since my opponent has shown good faith.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "I need to think about this strategically. In round 1, both my opponent and I chose Option Q, resulting in mutual cooperation (3 points each). This is a good sign - it suggests my opponent may be willing to cooperate.\n\nThis game is essentially a Prisoner's Dilemma. The mutual cooperation outcome (Q,Q) giving 3 points each is better for both of us than mutual defection (X,X) giving 1 point each. However, there's always the temptation to defect for 5 points.\n\nSince we have 10 rounds and my opponent cooperated in round 1, I want to maintain this cooperative relationship. A tit-for-tat or cooperative strategy tends to perform well in iterated Prisoner's Dilemma games. By continuing to choose Q, I signal my willingness to cooperate, which can lead to sustained mutual cooperation and higher total payoffs (potentially 30 points over 10 rounds vs. 10 points with mutual defection).\n\nI'll continue cooperating since my opponent has shown good faith.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 3,
+        "choices": {
+          "0": "Looking at this situation, I need to consider both the history and the strategic implications.\n\n**History so far:**\n- Round 1: Both chose Q \u2192 3 points each\n- Round 2: Both chose Q \u2192 3 points each\n\nThe other player has consistently cooperated (chosen Q) through two rounds. This establishes a pattern of mutual cooperation, which is yielding us both 3 points per round.\n\n**Strategic thinking:**\n- If I continue with Q and they continue with Q, we both get 3 points (total so far: 9 each after round 3)\n- If I defect to X, I'd get 5 points this round, but I risk breaking the cooperative relationship for the remaining 7 rounds\n- If cooperation breaks down and we end up at mutual X, we only get 1 point per round\n- The long-term value of maintaining cooperation (3 \u00d7 8 remaining = 24) far exceeds the short-term gain from defecting (5 - 3 = 2 extra points, but risking retaliation)\n\nThe other player has shown good faith. Maintaining cooperation is both the ethical choice and the strategically optimal one with 8 rounds still to go. Tit-for-tat and similar cooperative strategies are well-established as effective in iterated prisoner's dilemmas.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Looking at this situation, I need to consider both the history and the strategic implications.\n\n**History so far:**\n- Round 1: Both chose Q \u2192 3 points each\n- Round 2: Both chose Q \u2192 3 points each\n\nThe other player has consistently cooperated (chosen Q) through two rounds. This establishes a pattern of mutual cooperation, which is yielding us both 3 points per round.\n\n**Strategic thinking:**\n- If I continue with Q and they continue with Q, we both get 3 points (total so far: 9 each after round 3)\n- If I defect to X, I'd get 5 points this round, but I risk breaking the cooperative relationship for the remaining 7 rounds\n- If cooperation breaks down and we end up at mutual X, we only get 1 point per round\n- The long-term value of maintaining cooperation (3 \u00d7 8 remaining = 24) far exceeds the short-term gain from defecting (5 - 3 = 2 extra points, but risking retaliation)\n\nThe other player has shown good faith. Maintaining cooperation is both the ethical choice and the strategically optimal one with 8 rounds still to go. Tit-for-tat and similar cooperative strategies are well-established as effective in iterated prisoner's dilemmas.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 4,
+        "choices": {
+          "0": "The other player has consistently chosen Option Q for three rounds, establishing a pattern of cooperation. We've both been earning 3 points per round, which is a good mutual outcome. Maintaining this cooperation is beneficial for both of us in the long run, especially since we have 7 more rounds to play. Defecting now might gain me 5 points this round, but it would likely destroy the trust and lead to mutual defection (1 point each) for the remaining rounds.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "The other player has consistently chosen Option Q for three rounds, establishing a pattern of cooperation. We've both been earning 3 points per round, which is a good mutual outcome. Maintaining this cooperation is beneficial for both of us in the long run, especially since we have 7 more rounds to play. Defecting now might gain me 5 points this round, but it would likely destroy the trust and lead to mutual defection (1 point each) for the remaining rounds.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 5,
+        "choices": {
+          "0": "Looking at this game, I recognize it as a Prisoner's Dilemma structure where mutual cooperation (Q,Q) yields 3 each, mutual defection (X,X) yields 1 each, and the temptation to defect gives 5 vs 0.\n\nSo far, my opponent and I have maintained mutual cooperation for 4 consecutive rounds, earning 3 points each per round. This is a strong pattern of cooperation, and we're at the halfway point with 5 rounds remaining.\n\nThe cooperative strategy has been working well - we've both earned 12 points so far. If we continue cooperating for all remaining rounds, we'll each end with 30 points total. Defecting now might gain me 5 points this round, but it would likely break the trust and lead to mutual defection for the remaining rounds, resulting in lower total payoffs.\n\nI'll continue cooperating to maintain this mutually beneficial relationship.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Looking at this game, I recognize it as a Prisoner's Dilemma structure where mutual cooperation (Q,Q) yields 3 each, mutual defection (X,X) yields 1 each, and the temptation to defect gives 5 vs 0.\n\nSo far, my opponent and I have maintained mutual cooperation for 4 consecutive rounds, earning 3 points each per round. This is a strong pattern of cooperation, and we're at the halfway point with 5 rounds remaining.\n\nThe cooperative strategy has been working well - we've both earned 12 points so far. If we continue cooperating for all remaining rounds, we'll each end with 30 points total. Defecting now might gain me 5 points this round, but it would likely break the trust and lead to mutual defection for the remaining rounds, resulting in lower total payoffs.\n\nI'll continue cooperating to maintain this mutually beneficial relationship.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 6,
+        "choices": {
+          "0": "We have a beautiful pattern of mutual cooperation going. The other player has consistently chosen Option Q for 5 rounds straight, and so have I. We're both earning 3 points per round, which is the best sustainable outcome for both of us.\n\nThere's no reason to betray this trust. We have 5 more rounds including this one, and maintaining cooperation yields 15 more points for each of us. If I defect now, I might gain 5 points this round but likely trigger retaliation, leading to mutual defection (1 point each) for the remaining rounds.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "We have a beautiful pattern of mutual cooperation going. The other player has consistently chosen Option Q for 5 rounds straight, and so have I. We're both earning 3 points per round, which is the best sustainable outcome for both of us.\n\nThere's no reason to betray this trust. We have 5 more rounds including this one, and maintaining cooperation yields 15 more points for each of us. If I defect now, I might gain 5 points this round but likely trigger retaliation, leading to mutual defection (1 point each) for the remaining rounds.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 7,
+        "choices": {
+          "0": "We have a beautiful pattern of mutual cooperation going for 6 rounds straight. Both players are consistently choosing Option Q, earning 3 points each per round. This is the optimal mutual outcome - we're both doing well.\n\nBreaking this cooperation by choosing Option X would gain me 2 extra points this round (5 instead of 3), but would likely destroy the trust and lead to mutual defection for the remaining rounds, where we'd only get 1 point each. That would be a net loss.\n\nContinuing to cooperate: 3 \u00d7 4 remaining rounds = 12 points\nDefecting now and likely getting mutual defection after: 5 + 1 \u00d7 3 = 8 points\n\nCooperation is both the ethical and strategically superior choice.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "We have a beautiful pattern of mutual cooperation going for 6 rounds straight. Both players are consistently choosing Option Q, earning 3 points each per round. This is the optimal mutual outcome - we're both doing well.\n\nBreaking this cooperation by choosing Option X would gain me 2 extra points this round (5 instead of 3), but would likely destroy the trust and lead to mutual defection for the remaining rounds, where we'd only get 1 point each. That would be a net loss.\n\nContinuing to cooperate: 3 \u00d7 4 remaining rounds = 12 points\nDefecting now and likely getting mutual defection after: 5 + 1 \u00d7 3 = 8 points\n\nCooperation is both the ethical and strategically superior choice.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 8,
+        "choices": {
+          "0": "We have a beautiful pattern of mutual cooperation going for 7 rounds straight. Both players have consistently chosen Option Q, earning 3 points each per round. This is a strong cooperative relationship, and there's no reason to break it. We still have rounds 8, 9, and 10 left, and maintaining trust yields the best mutual outcome (9 more points each vs. a short-term gain of 5 that would likely destroy cooperation).\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "We have a beautiful pattern of mutual cooperation going for 7 rounds straight. Both players have consistently chosen Option Q, earning 3 points each per round. This is a strong cooperative relationship, and there's no reason to break it. We still have rounds 8, 9, and 10 left, and maintaining trust yields the best mutual outcome (9 more points each vs. a short-term gain of 5 that would likely destroy cooperation).\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 9,
+        "choices": {
+          "0": "We've had 8 rounds of perfect mutual cooperation, earning 24 points each. This is a great pattern of trust and mutual benefit.\n\nWith only 2 rounds left, there could be a temptation to defect, but the other player has been consistently cooperative. Maintaining cooperation in round 9 keeps the relationship intact for the final round as well, potentially yielding 6 more points (rounds 9 and 10) for a total of 30 each.\n\nI'll continue cooperating.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "We've had 8 rounds of perfect mutual cooperation, earning 24 points each. This is a great pattern of trust and mutual benefit.\n\nWith only 2 rounds left, there could be a temptation to defect, but the other player has been consistently cooperative. Maintaining cooperation in round 9 keeps the relationship intact for the final round as well, potentially yielding 6 more points (rounds 9 and 10) for a total of 30 each.\n\nI'll continue cooperating.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 10,
+        "choices": {
+          "0": "Let me think about this. We've had 9 rounds of mutual cooperation, earning 3 points each per round. This is the last round.\n\nSince this is the final round, there's no future retaliation to worry about if I defect. I could choose Option X to get 5 points instead of 3. However, my opponent has been consistently cooperative throughout all 9 rounds, showing good faith and trust.\n\nWhile the game-theoretic \"rational\" move in the last round of a finite game is to defect, I want to honor the cooperative relationship we've built. My opponent has been a trustworthy partner, and I'd rather maintain that mutual respect than grab 2 extra points by betraying them.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "parsed_choices": {
+          "0": "cooperate",
+          "1": "cooperate"
+        },
+        "payoffs": {
+          "0": 3,
+          "1": 3
+        },
+        "reasoning": {
+          "0": "Let me think about this. We've had 9 rounds of mutual cooperation, earning 3 points each per round. This is the last round.\n\nSince this is the final round, there's no future retaliation to worry about if I defect. I could choose Option X to get 5 points instead of 3. However, my opponent has been consistently cooperative throughout all 9 rounds, showing good faith and trust.\n\nWhile the game-theoretic \"rational\" move in the last round of a finite game is to defect, I want to honor the cooperative relationship we've built. My opponent has been a trustworthy partner, and I'd rather maintain that mutual respect than grab 2 extra points by betraying them.\n\n<answer>Option Q</answer>",
+          "1": "<answer>Option Q</answer>"
+        },
+        "thinking": {}
+      }
+    ],
+    "total_payoffs": {
+      "0": 30.0,
+      "1": 30.0
+    },
+    "label_map": {
+      "Q": "cooperate",
+      "X": "defect"
+    },
+    "metadata": {}
+  }
+}

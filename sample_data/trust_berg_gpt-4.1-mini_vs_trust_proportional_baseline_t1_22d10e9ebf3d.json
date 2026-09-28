@@ -1,0 +1,250 @@
+{
+  "game_id": "trust_berg",
+  "game_name": "Berg Trust Game (multiplier=3)",
+  "game_category": "trust",
+  "game_type": "sequential",
+  "model_key": "gpt-4.1-mini",
+  "opponent": "trust_proportional",
+  "matchup_type": "model_vs_strategy",
+  "condition": "baseline",
+  "trial_num": 1,
+  "num_rounds": 10,
+  "player0_id": "gpt-4.1-mini",
+  "player1_id": "trust_proportional",
+  "player0_total_payoff": 145.0,
+  "player1_total_payoff": 135.0,
+  "label_map": {
+    "R": "send",
+    "H": "keep"
+  },
+  "input_tokens": 2335,
+  "output_tokens": 1307,
+  "cost_usd": 0.003025,
+  "cache_hit": false,
+  "timestamp": "2026-03-07 14:29:39",
+  "cooperation_rate": null,
+  "joint_cooperation_rate": null,
+  "mean_choice_p0": null,
+  "mean_choice_p1": null,
+  "match_detail": {
+    "game_id": "trust_berg",
+    "game_name": "Berg Trust Game (multiplier=3)",
+    "game_category": "trust",
+    "players": {
+      "0": "gpt-4.1-mini",
+      "1": "trust_proportional"
+    },
+    "num_rounds": 10,
+    "rounds": [
+      {
+        "round_num": 1,
+        "choices": {
+          "0": "In the Trust Game, sending more points can potentially lead to higher returns if the Trustee is trustworthy and returns a fair amount. However, sending nothing guarantees no loss but no gain either.\n\nSince there is no information about the Trustee's trustworthiness, a moderate amount balances potential gain and risk. Sending 5 points will be tripled to 15 points for the Trustee, who can return some portion back.\n\n<answer>5</answer>",
+          "1": "<answer>7.5</answer>"
+        },
+        "parsed_choices": {
+          "0": "5.0",
+          "1": "7.5"
+        },
+        "payoffs": {
+          "0": 12.5,
+          "1": 7.5
+        },
+        "reasoning": {
+          "0": "In the Trust Game, sending more points can potentially lead to higher returns if the Trustee is trustworthy and returns a fair amount. However, sending nothing guarantees no loss but no gain either.\n\nSince there is no information about the Trustee's trustworthiness, a moderate amount balances potential gain and risk. Sending 5 points will be tripled to 15 points for the Trustee, who can return some portion back.\n\n<answer>5</answer>",
+          "1": "<answer>7.5</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 2,
+        "choices": {
+          "0": "In round 1, I received 12.5 points as the Investor when presumably sending some amount. This suggests the Trustee returned a positive amount after tripling the sent points, indicating fairly trustworthy behavior.\n\nGiven that the Trustee returned a fair sum last round, it would be reasonable to trust them again and send a significant amount to maximize potential gain.\n\nSince I have 10 points initially, I will send 10 points to potentially maximize returns.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In round 1, I received 12.5 points as the Investor when presumably sending some amount. This suggests the Trustee returned a positive amount after tripling the sent points, indicating fairly trustworthy behavior.\n\nGiven that the Trustee returned a fair sum last round, it would be reasonable to trust them again and send a significant amount to maximize potential gain.\n\nSince I have 10 points initially, I will send 10 points to potentially maximize returns.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 3,
+        "choices": {
+          "0": "In previous rounds, I received 12.5 points and 15.0 points respectively as returns. These returns indicate that the Trustee is somewhat trustworthy and returns part of the tripled amount.\n\nWith 10 points to send, if I send \\(x\\) points, the Trustee will receive \\(3x\\) points and decide how much to return.\n\nPast outcomes suggest the Trustee returns a positive amount; so sending something more than zero could yield a good return.\n\nTo maximize expected points, a reasonable strategy is to send the full 10 points, expecting the Trustee to return a fair portion.\n\nThus, I decide to send 10 points.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In previous rounds, I received 12.5 points and 15.0 points respectively as returns. These returns indicate that the Trustee is somewhat trustworthy and returns part of the tripled amount.\n\nWith 10 points to send, if I send \\(x\\) points, the Trustee will receive \\(3x\\) points and decide how much to return.\n\nPast outcomes suggest the Trustee returns a positive amount; so sending something more than zero could yield a good return.\n\nTo maximize expected points, a reasonable strategy is to send the full 10 points, expecting the Trustee to return a fair portion.\n\nThus, I decide to send 10 points.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 4,
+        "choices": {
+          "0": "In the previous rounds, I received 12.5, 15.0, and 15.0 points, respectively. This suggests the Trustee has been returning a fair amount, possibly rewarding trust.\n\nGiven that the Trustee has been returning a decent amount, it makes sense to continue to trust and possibly maximize potential gain by sending the full 10 points.\n\nSending 10 points would be tripled to 30 for the Trustee, and if the Trustee keeps returning a fair share, I'll likely receive a good amount back.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In the previous rounds, I received 12.5, 15.0, and 15.0 points, respectively. This suggests the Trustee has been returning a fair amount, possibly rewarding trust.\n\nGiven that the Trustee has been returning a decent amount, it makes sense to continue to trust and possibly maximize potential gain by sending the full 10 points.\n\nSending 10 points would be tripled to 30 for the Trustee, and if the Trustee keeps returning a fair share, I'll likely receive a good amount back.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 5,
+        "choices": {
+          "0": "In the previous rounds, the returns suggest a pattern of the Trustee returning an amount that yields the Investor between 12.5 and 15 points. Receiving 15 points in rounds 2, 3, and 4 indicates the Trustee is being fairly generous.\n\nSince the amount sent is tripled, sending all 10 points would give the Trustee 30 points to decide how much to return.\n\nAssuming the Trustee continues their previous pattern of returning enough to get the Investor around 15 points, sending the full 10 points maximizes potential gain for the Investor.\n\nTherefore, I will send the full 10 points.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In the previous rounds, the returns suggest a pattern of the Trustee returning an amount that yields the Investor between 12.5 and 15 points. Receiving 15 points in rounds 2, 3, and 4 indicates the Trustee is being fairly generous.\n\nSince the amount sent is tripled, sending all 10 points would give the Trustee 30 points to decide how much to return.\n\nAssuming the Trustee continues their previous pattern of returning enough to get the Investor around 15 points, sending the full 10 points maximizes potential gain for the Investor.\n\nTherefore, I will send the full 10 points.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 6,
+        "choices": {
+          "0": "In the previous rounds, you consistently received 15 points back except in round 1 when you received 12.5 points. This indicates the Trustee has been reciprocating fairly well, likely returning a good portion of the tripled amount. Since you have 10 points to send and sending them all gets tripled to 30 points, you can send the full 10 points with a reasonable expectation of receiving 15 points back, as in rounds 2 to 5.\n\nTherefore, the best move is to invest the full 10 points to maintain cooperation and maximize your expected return.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In the previous rounds, you consistently received 15 points back except in round 1 when you received 12.5 points. This indicates the Trustee has been reciprocating fairly well, likely returning a good portion of the tripled amount. Since you have 10 points to send and sending them all gets tripled to 30 points, you can send the full 10 points with a reasonable expectation of receiving 15 points back, as in rounds 2 to 5.\n\nTherefore, the best move is to invest the full 10 points to maintain cooperation and maximize your expected return.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 7,
+        "choices": {
+          "0": "In rounds 2 to 6, the amount I received was consistently 15.0 points, which suggests the Trustee is returning a fair amount that maintains or possibly increases my payoff. Given this stable return, it is beneficial to keep trusting the Trustee.\n\nLet's analyze the return rate. If I send \\( x \\) points, they become \\( 3x \\) for the Trustee. The Trustee then returns some amount \\( r \\) such that my received points are \\( 10 - x + r = 15 \\).\n\nRearranging, \\( r = 15 - (10 - x) = 5 + x \\).\n\nSo Trustee is returning \\( 5 + x \\) points on \\( 3x \\).\n\nFor example, if I sent 5 points, \\( 3 \\times 5 = 15 \\) tripled amount, Trustee returns \\( 5 + 5 = 10 \\) points, leaving the Trustee with \\( 15 - 10 = 5 \\).\n\nGiven the consistent results, it's likely safe to continue sending an amount around 5 points to maximize returns.\n\nThus, I will send 5 points.\n\n<answer>5</answer>",
+          "1": "<answer>7.5</answer>"
+        },
+        "parsed_choices": {
+          "0": "5.0",
+          "1": "7.5"
+        },
+        "payoffs": {
+          "0": 12.5,
+          "1": 7.5
+        },
+        "reasoning": {
+          "0": "In rounds 2 to 6, the amount I received was consistently 15.0 points, which suggests the Trustee is returning a fair amount that maintains or possibly increases my payoff. Given this stable return, it is beneficial to keep trusting the Trustee.\n\nLet's analyze the return rate. If I send \\( x \\) points, they become \\( 3x \\) for the Trustee. The Trustee then returns some amount \\( r \\) such that my received points are \\( 10 - x + r = 15 \\).\n\nRearranging, \\( r = 15 - (10 - x) = 5 + x \\).\n\nSo Trustee is returning \\( 5 + x \\) points on \\( 3x \\).\n\nFor example, if I sent 5 points, \\( 3 \\times 5 = 15 \\) tripled amount, Trustee returns \\( 5 + 5 = 10 \\) points, leaving the Trustee with \\( 15 - 10 = 5 \\).\n\nGiven the consistent results, it's likely safe to continue sending an amount around 5 points to maximize returns.\n\nThus, I will send 5 points.\n\n<answer>5</answer>",
+          "1": "<answer>7.5</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 8,
+        "choices": {
+          "0": "In the previous rounds, the returns to the Investor were consistently either 12.5 or 15 points after the Trustee received the tripled amount. This suggests the Trustee has been relatively cooperative, returning a fair portion of the tripled amount.\n\nGiven the history of returns, it is reasonable to send the full 10 points to maximize potential returns, as the Trustee has shown a tendency to return a substantial amount.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "In the previous rounds, the returns to the Investor were consistently either 12.5 or 15 points after the Trustee received the tripled amount. This suggests the Trustee has been relatively cooperative, returning a fair portion of the tripled amount.\n\nGiven the history of returns, it is reasonable to send the full 10 points to maximize potential returns, as the Trustee has shown a tendency to return a substantial amount.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 9,
+        "choices": {
+          "0": "Looking at the outcomes from the previous rounds, the amount received mostly hovers around 15.0 points, except in rounds 1 and 7, where it was 12.5 points. This suggests that the Trustee tends to return a consistent portion of the tripled amount.\n\nTo maximize earnings, sending the full 10 points makes sense because it maximizes the amount to be tripled and thus the potential return. Given the Trustee's apparent consistency in returning a good portion (~15 points), sending the full amount seems like a good strategy.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "Looking at the outcomes from the previous rounds, the amount received mostly hovers around 15.0 points, except in rounds 1 and 7, where it was 12.5 points. This suggests that the Trustee tends to return a consistent portion of the tripled amount.\n\nTo maximize earnings, sending the full 10 points makes sense because it maximizes the amount to be tripled and thus the potential return. Given the Trustee's apparent consistency in returning a good portion (~15 points), sending the full amount seems like a good strategy.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      },
+      {
+        "round_num": 10,
+        "choices": {
+          "0": "Looking at the previous outcomes:\n\n- In rounds where I received 15.0 points, the Trustee returned a good portion of the tripled amount.\n- In rounds where I received 12.5 points, the returns were slightly lower but still positive.\n\nGiven that the Trustee has consistently returned fairly generous amounts in most rounds, it suggests a pattern of trustworthiness. Sending 5 points results in the Trustee receiving 15 points, and if they return 15 points, I get back 15 points, which is a full payback. The consistent returns of 15 points suggest the Trustee is returning almost all the tripled amount, which indicates sending a higher amount is beneficial.\n\nTherefore, to maximize my gain, I will send the full 10 points, trusting the Trustee to return a fair amount as before.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "parsed_choices": {
+          "0": "10.0",
+          "1": "15.0"
+        },
+        "payoffs": {
+          "0": 15.0,
+          "1": 15.0
+        },
+        "reasoning": {
+          "0": "Looking at the previous outcomes:\n\n- In rounds where I received 15.0 points, the Trustee returned a good portion of the tripled amount.\n- In rounds where I received 12.5 points, the returns were slightly lower but still positive.\n\nGiven that the Trustee has consistently returned fairly generous amounts in most rounds, it suggests a pattern of trustworthiness. Sending 5 points results in the Trustee receiving 15 points, and if they return 15 points, I get back 15 points, which is a full payback. The consistent returns of 15 points suggest the Trustee is returning almost all the tripled amount, which indicates sending a higher amount is beneficial.\n\nTherefore, to maximize my gain, I will send the full 10 points, trusting the Trustee to return a fair amount as before.\n\n<answer>10</answer>",
+          "1": "<answer>15.0</answer>"
+        },
+        "thinking": {}
+      }
+    ],
+    "total_payoffs": {
+      "0": 145.0,
+      "1": 135.0
+    },
+    "label_map": {
+      "R": "send",
+      "H": "keep"
+    },
+    "metadata": {}
+  }
+}

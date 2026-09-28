@@ -1,0 +1,53 @@
+{
+  "n_trials": 5318,
+  "n_models": 25,
+  "n_common_opponents": 16,
+  "release_dates_used": true,
+  "trial_level": {
+    "r2_full": 0.2701,
+    "r2_drop_by_factor": {
+      "developer": 0.0732,
+      "size_tier": 0.0324,
+      "reasoning": 0.0,
+      "release_years": 0.0062
+    },
+    "developer_coefficients_vs_reference": {
+      "C(developer, Treatment(reference='OpenAI'))[T.Alibaba]": 0.1665,
+      "C(developer, Treatment(reference='OpenAI'))[T.Anthropic]": 0.2572,
+      "C(developer, Treatment(reference='OpenAI'))[T.DeepSeek]": -0.1849,
+      "C(developer, Treatment(reference='OpenAI'))[T.Google]": -0.0712,
+      "C(developer, Treatment(reference='OpenAI'))[T.Meta]": -0.2473,
+      "C(developer, Treatment(reference='OpenAI'))[T.Mistral]": 0.2044
+    },
+    "developer_p_values": {
+      "C(developer, Treatment(reference='OpenAI'))[T.Alibaba]": 0.294372,
+      "C(developer, Treatment(reference='OpenAI'))[T.Anthropic]": 0.01186,
+      "C(developer, Treatment(reference='OpenAI'))[T.DeepSeek]": 0.33293,
+      "C(developer, Treatment(reference='OpenAI'))[T.Google]": 0.615262,
+      "C(developer, Treatment(reference='OpenAI'))[T.Meta]": 0.058906,
+      "C(developer, Treatment(reference='OpenAI'))[T.Mistral]": 0.134193
+    },
+    "reference_developer": "OpenAI"
+  },
+  "between_model_shares_pd": {
+    "developer": 0.39,
+    "size_tier": 0.119,
+    "reasoning": 0.0,
+    "release_years": 0.126,
+    "joint_r2": 0.571,
+    "bootstrap_developer_ahead_of": {
+      "size_tier": 0.961,
+      "reasoning": 1.0,
+      "release_years": 0.958
+    },
+    "developer_given_others": 0.368
+  },
+  "between_model_shares_trust": {
+    "developer": 0.188,
+    "size_tier": 0.212,
+    "reasoning": 0.007,
+    "release_years": 0.034,
+    "joint_r2": 0.404,
+    "developer_given_others": 0.182
+  }
+}
