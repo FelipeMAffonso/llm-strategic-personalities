@@ -1,3 +1,11 @@
+"""Supplementary Fig. 7: the game-level choice measures of the 36 scored games (180 measures) on their first two
+principal components, colored by category (a), and the variance each component explains (b).
+
+Colonel Blotto and multi-issue negotiation are left out: each answer needed several numbers and the parser kept one,
+so their game-level measures do not describe the models' play.
+
+    python figures/figS7_factor_loadings.py
+"""
 from pathlib import Path
 
 import numpy as np
@@ -7,7 +15,9 @@ from matplotlib.lines import Line2D
 import figlib
 from figlib import plt
 
-from common import CATEGORIES, MODELS
+from common import CATEGORIES, GAME_NAMES, MODELS
+
+UNSCORED = ("colonel_blotto", "multi_issue")
 
 
 def principal_components():
@@ -15,7 +25,10 @@ def principal_components():
     data = data.loc[data.model_key.isin(MODELS)]
     assert len(data) == 25 and data.model_key.is_unique
     features = sorted(key for key in data if "__" in key and not key.startswith("lex_")
+                      and not key.startswith(tuple(game + "__" for game in UNSCORED))
                       and any(metric in key for metric in ["entropy", "consistency", "first_round_rate", "endgame_shift", "dominant_rate"]))
+    games = sorted({feature.split("__")[0] for feature in features})
+    assert not set(games) & set(UNSCORED) and len(games) == 36
     values = data[features].fillna(0).to_numpy()
     deviations = values.std(axis=0)
     deviations[deviations == 0] = 1
@@ -23,7 +36,7 @@ def principal_components():
     left, singular, right = np.linalg.svd(standardized, full_matrices=False)
     loadings = right[:2].T * singular[:2] / np.sqrt(len(data) - 1)
     variance = singular**2 / (singular**2).sum()
-    print(f"PCA: {len(data)} models, {len(features)} features, {data[features].isna().sum().sum()} missing entries filled with zero as in the original")
+    print(f"PCA: {len(data)} models, {len(games)} games, {len(features)} features, {data[features].isna().sum().sum()} missing entries filled with zero")
     print("Variance explained (%):", variance[:10] * 100)
     return features, loadings, variance
 
@@ -68,15 +81,12 @@ def build():
     fig.text(0.04, 0.845, "a", fontweight="bold", fontsize=8)
     fig.text(0.76, 0.845, "b", fontweight="bold", fontsize=8)
     top = np.argsort(np.linalg.norm(loadings, axis=1))[-10:][::-1]
-    points = [(horizontal, vertical, "", "") for horizontal, vertical in loadings]
+    # The ten longest loadings are labelled in a fixed column left of the cloud, with a leader line to each point.
     for index in top:
         game, metric = features[index].split("__", 1)
-        label = f"{names[game]}\n({metric.replace('_', ' ')})"
-        points.append((*loadings[index], label, category_colors[game_categories[game]]))
-    line_count = len(loading_axis.lines)
-    figlib.label_points(loading_axis, points, fontsize=6, avoid_leader_crossings=True)
-    for line in list(loading_axis.lines)[line_count:]:
-        line.remove()
+        label = f"{names.get(game, GAME_NAMES[game])}\n({metric.replace('_', ' ')})"
+        loading_axis.text(*loadings[index], label, fontsize=6, color=category_colors[game_categories[game]], zorder=5,
+                          bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.2})
     ordered = sorted(zip(loading_axis.texts, top), key=lambda pair: loadings[pair[1], 1])
     for (text, index), label_height in zip(ordered, np.linspace(-1.05, 1.05, 10)):
         text.set_transform(loading_axis.transData)

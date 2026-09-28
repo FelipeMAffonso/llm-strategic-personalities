@@ -5,8 +5,11 @@ scipy==1.18.1
 statsmodels==0.15.0
 matplotlib==3.11.1
 
-# The reasoning-text clustering and its robustness check (analysis/reasoning_text_clustering.py and
-# analysis/reasoning_text_robustness.py; bash reproduce.sh --with-clustering) also need:
-#   pip install scikit-learn umap-learn sentence-transformers
+# The reasoning-text clustering (analysis/reasoning_text_clustering.py; bash reproduce.sh --with-clustering) also
+# needs scikit-learn, and its robustness check (analysis/reasoning_text_robustness.py) sentence-transformers (the
+# released check ran with torch 2.11.0 and sentence-transformers 6.1.0):
+#   pip install scikit-learn sentence-transformers
+# The released projections were computed without umap-learn; with it installed, the files named umap would hold UMAP
+# coordinates instead of principal components.
 # Data collection with the model APIs (data_collection/) also needs the provider libraries:
 #   pip install anthropic openai google-genai google-auth

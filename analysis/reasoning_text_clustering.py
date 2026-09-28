@@ -1,24 +1,29 @@
 """
 Reasoning-text clustering: how the models reason about their choices, not only what they choose.
 
-Reads the reasoning text of every model decision in the raw trial files, embeds it, and measures how far apart the
-models are:
+Reads the visible reply text of every player in every round of the raw trial files (texts of at least 30
+characters: 645,190, of which 636,759 come from the models and 8,431 from fixed strategies), embeds it, and measures
+how far apart the models are:
 
-  1. Load the reasoning text of each decision from the raw trial files
+  1. Load the reply texts from the raw trial files and subsample 41,520 of them uniformly across the 34 agents
+     (25 models and 9 fixed strategies)
   2. Embed the texts (TF-IDF with 5,000 features reduced to 384 dimensions by truncated SVD)
   3. Per-model centroids and spread of the embeddings
   4. Jensen-Shannon distance between the models' choice distributions (per game and aggregated)
   5. Cosine distance between the models' embedding centroids
-  6. UMAP, t-SNE and PCA projections of the centroids (and a UMAP of a sample of individual texts)
+  6. UMAP, t-SNE and PCA projections of the centroids (and a projection of 10,000 individual texts)
   7. Hierarchical clustering of the centroids (average linkage)
-  8. Developer separation (silhouette scores with developer as the label, within and between distances)
+  8. Developer separation (silhouette scores with developer as the label, the fixed strategies as a group of their
+     own, within and between distances)
   9. Behavioral signatures per model (choice patterns, reasoning vocabulary, conditional cooperation, transition
      probabilities, final-round effects)
 
 Writes the files in summary_data/reasoning_text_clustering/ (several file names begin with "hodoscope", the name
 the code gives this analysis). The raw trial files are read from raw_data/, or from the folder named by
-the environment variable RAW_DATA_DIR. Needs scikit-learn and umap-learn (see requirements.txt). The sentence-transformer
-embedding of the robustness check is in reasoning_text_robustness.py.
+the environment variable RAW_DATA_DIR. Needs scikit-learn. The released files were computed without umap-learn, so
+the UMAP step fell back to PCA (_umap_2d): centroid_umap.csv equals centroid_pca.csv, and trace_umap.csv holds the
+first two principal components of the individual texts. With umap-learn installed, the two files would hold UMAP
+coordinates instead. The sentence-transformer embedding of the robustness check is in reasoning_text_robustness.py.
 
     python analysis/reasoning_text_clustering.py
 """
@@ -28,6 +33,7 @@ from __future__ import annotations
 import json
 import math
 import os
+import sys
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -39,13 +45,20 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_RAW = Path(os.environ.get("RAW_DATA_DIR") or PROJECT_ROOT / "raw_data")
 HODOSCOPE_DIR = PROJECT_ROOT / "summary_data" / "reasoning_text_clustering"
 
+sys.path.insert(0, str(PROJECT_ROOT))
+from data_collection.models import ALL_MODELS as _ALL_MODELS  # noqa: E402
+
+_LLM_KEYS = frozenset(_ALL_MODELS)
+
 
 # ---------------------------------------------------------------------------
 # Provider detection
 # ---------------------------------------------------------------------------
 
 def get_provider(model_key: str) -> str:
-    """Extract provider name from a model key string."""
+    """The developer of a model key, used as the group label of the clustering. Every agent that is not one of the
+    25 models is a fixed strategy (always_football, mirror, random_strategy and so on), and the strategies form one
+    group of their own. analysis/check_developer_labels.py checks these labels."""
     mk = model_key.lower()
     if "claude" in mk:
         return "anthropic"
@@ -61,9 +74,12 @@ def get_provider(model_key: str) -> str:
         return "alibaba"
     if "kimi" in mk:
         return "moonshot"
-    if "mistral" in mk or "mixtral" in mk:
+    # "ministral" does not contain "mistral", so it is named here
+    if "mistral" in mk or "mixtral" in mk or "ministral" in mk:
         return "mistral"
-    return "other"
+    if model_key in _LLM_KEYS:
+        raise ValueError(f"no developer for model key {model_key!r}; add it to get_provider")
+    return "strategy"
 
 
 def get_model_family(model_key: str) -> str:

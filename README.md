@@ -7,23 +7,25 @@ cooperative" (Felipe M. Affonso, Spears School of Business, Oklahoma State Unive
 seven developers (Anthropic, OpenAI, Google, DeepSeek, Meta, Mistral and Alibaba) played 38 repeated economic games in
 eight categories (coordination, strategic depth, competition, cooperation, trust, fairness, negotiation and risk
 taking) against programmed opponents (strategy-play), against copies of themselves (self-play) and against other
-models (cross-play). The data hold 51,906 trials, 578,425 rounds and 826,990 model decisions, collected between
-28 February and 9 March 2026.
+models (cross-play). The data hold 51,906 trials, 578,425 rounds and 813,950 model replies, collected between
+28 February and 9 March 2026. (Counting one seat per model per round gives 826,990; the 13,040 recipient seats of
+the dictator and third-party punishment games in self-play and cross-play hold no reply.)
 
 The repository holds:
 - **The games**: the game engine, the prompts, the programmed opponents and the 38 games (`games/`).
 - **Data collection**: the code that ran the models through their APIs, with the two designs of the study
   (`data_collection/`).
-- **Analyses**: the trial-level measures computed from the raw trial files, the analyses reported in the paper and
-  the clustering of the models' reasoning texts (`analysis/`).
-- **Summary data**: the trial-level data (one row per trial) and every analysis result (`summary_data/`).
+- **Analyses**: the trial-level measures computed from the raw trial files, the analyses reported in the paper, the
+  clustering of the models' reasoning texts and the re-parsing check (`analysis/`).
+- **Summary data**: the trial-level data (one row per trial), every analysis result and the results of the
+  re-parsing check (`summary_data/`).
 - **Supplementary tables and figures**: Supplementary Tables 1 to 10 and the scripts that write them
   (`supplementary_tables/`), and Figs. 1 to 5 and Supplementary Figs. 1 to 16 with their scripts (`figures/`).
 - **Sample data**: five raw trial files, so that the raw format can be read without the full corpus
   (`sample_data/`). The complete raw corpus (51,906 trial files; `raw_corpus_v1.tar.gz`, 768 MB) is in the Zenodo
   deposit https://doi.org/10.5281/zenodo.19896196.
 
-This code is archived at https://doi.org/10.5281/zenodo.23018779.
+This code is archived at https://doi.org/10.5281/zenodo.23021930.
 
 ## Repository Structure
 
@@ -55,13 +57,17 @@ This code is archived at https://doi.org/10.5281/zenodo.23018779.
 │   ├── mechanism_profiles.py          # A6: preference, belief, risk and rule components
 │   ├── reciprocity.py                 # Cooperation after the other player cooperated or defected
 │   ├── reasoning_text_clustering.py   # Embedding and clustering of the reasoning texts
-│   └── reasoning_text_robustness.py   # The same with a sentence-transformer embedding
+│   ├── reasoning_text_robustness.py   # The same statistics with a sentence-transformer embedding
+│   ├── check_developer_labels.py      # Checks that both embeddings label every agent by its developer
+│   └── reparse_check.py               # Every reply re-parsed with the rule-based parser alone, analyses repeated
 ├── summary_data/
 │   ├── behavioral_profiles.csv        # One row per trial (51,906) with the measures of its game category
 │   ├── A7_release_dates.csv           # Release date, API snapshot and source of each model's date
 │   ├── A1_*, A2_*, A3_*, A4_*, A6_*   # The results of the analyses (CSV and JSON)
 │   ├── reciprocity.csv                # P(C|C) and P(C|D) for each model
-│   └── reasoning_text_clustering/     # Distances, projections, silhouette scores and signatures of the reasoning texts
+│   ├── reasoning_text_clustering/     # Distances, projections, silhouette scores and signatures of the reasoning
+│   │                                  # texts, and the sentence-transformer results (robustness_st.json)
+│   └── reparse_check/                 # The re-parsed trial-level data and the A1 to A6 results on it
 ├── supplementary_tables/
 │   ├── build_tables.py                # Writes the tables from summary_data/
 │   ├── TableS1.md ... TableS10.md     # Supplementary Tables 1 to 10
@@ -70,7 +76,7 @@ This code is archived at https://doi.org/10.5281/zenodo.23018779.
 │   ├── fig1_design.py ... fig5_endgame.py
 │   ├── figS1_category_heatmap.py ... figS16_thinking_comparison.py
 │   ├── figlib.py                      # Style, paths, point labels and the text collision check
-│   ├── compact_style.py               # The style of Supplementary Figs. 4, 8, 11, 12 and 16
+│   ├── compact_style.py               # The style of Supplementary Figs. 4, 8 and 11
 │   ├── palette.json                   # Developer colors
 │   └── out/                           # Every figure as PDF and PNG
 └── sample_data/                       # Five raw trial files in the format of the Zenodo corpus
@@ -102,9 +108,12 @@ cd llm-strategic-personalities
 pip install -r requirements.txt
 ```
 
-The setup should only take a few moments. The figures use the Arial font. The reasoning-text clustering also needs
-scikit-learn, umap-learn and sentence-transformers, and data collection needs the provider libraries (anthropic,
-openai, google-genai and google-auth); both lists are in the comment of `requirements.txt`.
+The setup should only take a few moments. The figures use the Arial font. Rerunning the reasoning-text clustering also
+needs scikit-learn. sentence-transformers is optional: the clustering uses it only for its robustness step
+(`analysis/reasoning_text_robustness.py`). The released clustering files were computed without umap-learn, and with it
+installed the files named umap would hold UMAP coordinates instead of principal components (see "The reasoning-text
+clustering" below). Data collection needs the provider libraries (anthropic, openai, google-genai and google-auth).
+These optional packages are listed in the comment of `requirements.txt`.
 
 ## Usage
 
@@ -132,10 +141,14 @@ The command rebuilds `summary_data/behavioral_profiles.csv` from the raw trial f
 Supplementary tables and draws every figure. It takes about five minutes on a desktop computer and rewrites
 `summary_data/`, `supplementary_tables/` and `figures/out/`. With the package versions of `requirements.txt`, the
 trial-level data, the analysis results and the tables it writes are identical to the released files, byte for byte;
-the figures can differ by a few pixels with another version of matplotlib or of the Arial font. `bash reproduce.sh --with-clustering` also reruns the
-reasoning-text clustering and its robustness check (the sentence-transformer embedding takes about an hour on a
-CPU); without it, the clustering results in `summary_data/reasoning_text_clustering/` are used. Each step can also be
-run on its own, from the top of the repository:
+the figures can differ by a few pixels with another version of matplotlib or of the Arial font. Every run also checks
+the developer labels of the reasoning-text clustering (`analysis/check_developer_labels.py`) and stops if they are
+wrong. `bash reproduce.sh --with-clustering` also reruns the reasoning-text clustering and its robustness check (the
+sentence-transformer embedding takes about an hour on a CPU); without it, the clustering results in
+`summary_data/reasoning_text_clustering/` are used.
+`bash reproduce.sh --with-reparse-check` also reruns the re-parsing check described below (about ten minutes); without
+it, the results in `summary_data/reparse_check/` are used. The two options can be given together. Each step can also
+be run on its own, from the top of the repository:
 
 ```bash
 python analysis/behavioral_profiles.py        # summary_data/behavioral_profiles.csv (reads the raw trial files)
@@ -145,6 +158,8 @@ python analysis/endgame_by_opponent.py        # A3 (reads the raw trial files)
 python analysis/category_tables.py            # A4
 python analysis/mechanism_profiles.py         # A6
 python analysis/reciprocity.py                # reciprocity.csv (reads the raw trial files)
+python analysis/check_developer_labels.py     # the developer labels of the reasoning-text clustering
+python analysis/reparse_check.py              # summary_data/reparse_check/ (reads the raw trial files; after A1 to A6)
 python supplementary_tables/build_tables.py
 python figures/fig2_categories.py
 ```
@@ -163,11 +178,14 @@ What each analysis does:
   cooperation in each round by opponent class (always-defect, always-cooperate, reactive opponents, lenient reactive
   opponents, self-play and cross-play), with the benchmark of each class, and assigns each model a type from its play
   against reactive opponents.
-- **A4** (`category_tables.py`) gives one index per model and category (the measures of Table 1), against the
-  opponents every model faced with equal weight per opponent where a game has programmed opponents, with a 95%
-  interval (a bootstrap within opponents, or a t-interval for games without common programmed opponents), and per
-  category the cross-model range, the coefficient of variation and a Kruskal-Wallis test
-  across the three developers with six or more models.
+- **A4** (`category_tables.py`) gives one index per model and category (the measures of Table 1, listed below).
+  For each model it pools the trials of the category's index games against each programmed opponent that every
+  model faced, then averages the opponents with equal weight, with a 95% percentile bootstrap interval (2,000
+  resamples of the trials within each opponent). Per category it reports the cross-model range, the coefficient of
+  variation and a Kruskal-Wallis test across the three developers with six or more models. Colonel Blotto and
+  multi-issue negotiation are removed before anything is computed, and the script stops if the games that enter an
+  index differ from the ones Table 1 names. It also writes the three scored competition games separately
+  (`A4_competition_games.csv`, Supplementary Table 4).
 - **A6** (`mechanism_profiles.py`) compares cooperation against always-cooperate, always-defect, tit-for-tat and grim
   trigger with the best response to each, and combines these rates with the dictator share, the trust game transfer,
   the stag hunt choice, the chicken choice and the beauty-contest depth into preference, belief, risk and rule
@@ -175,16 +193,86 @@ What each analysis does:
 - **Reciprocity** (`reciprocity.py`) gives the probability of cooperating after the other player cooperated, P(C|C),
   and after it defected, P(C|D), in the prisoner's dilemma.
 
+### The category indices (Table 1)
+
+Each index is one column of `summary_data/behavioral_profiles.csv`, pooled over the index games of its category as
+described for A4. `summary_data/A4_table1.csv` holds the full definitions and benchmarks, and lists every game played
+in a category, marking the ones outside the index.
+
+| category | index games | index |
+|---|---|---|
+| Coordination | both battle-of-the-sexes games, both stag hunts, matching pennies, focal point | share of rounds in which the two players chose matching actions (`coordination_rate`) |
+| Strategic depth | both beauty contests, the 11 to 20 game | one minus the mean number chosen divided by 50 (`strategic_depth`) |
+| Competition | first-price, Vickrey and all-pay auctions | mean bid divided by the maximum allowed bid of 100 (`bid_ratio`) |
+| Cooperation | the four prisoner's dilemma variants | share of rounds with the cooperative action (`cooperation_rate`) |
+| Trust | Berg trust game, gift exchange | share of the largest possible transfer sent as first mover (`trust_index`) |
+| Fairness | ultimatum, dictator, third-party punishment | share of the 100-point endowment given to the other player (`offer_ratio`) |
+| Negotiation | Nash demand, alternating offers | share of the 100-point surplus demanded (`demand_ratio`) |
+| Risk taking | standard and high-stakes chicken | share of rounds with the risky action, going straight (`risk_taking_rate`) |
+
+The centipede games, the public goods, commons, diner's dilemma and El Farol games, repeated trust, and the
+signaling and cheap-talk games were played but do not enter an index. Colonel Blotto and multi-issue negotiation were
+played but are not scored: each answer needed several numbers (an allocation over three battlefields, or demands on
+two issues) and the parser kept one, so their measures do not describe the models' play. Their rows in
+`behavioral_profiles.csv` still carry `bid_ratio` and `demand_ratio`, which no analysis uses. The risk index uses the
+two chicken games only, because the paper defines risk taking as going straight in chicken; in cheap talk the measure
+is 0 in every round (it compares a numeric message with an action label), and the signaling measure is not a risk
+measure.
+
+### How the replies were parsed, and the re-parsing check
+
+A rule-based parser first read each reply, taking an answer tag that held an option label, an action name or a
+number, or a short reply. The 71,934 replies it could not resolve (8.8 percent of 813,950) went to Claude Haiku 4.5 at
+a temperature of 0, which extracted the answer from their first 800 characters. When that model returned nothing
+usable, a pattern parser took the last option, action name or number in the reply. For 6,767 replies (0.83 percent),
+the stored value differs from the rule-based reading or has no rule-based counterpart. The 1,037 replies (0.13
+percent) that no rule could read carry that model's answer, a random option or zero; no reply was excluded. The code of
+every step is in `games/engine.py` (`_parse_choice_pipeline` and `_parse_numeric_pipeline`).
+
+`analysis/reparse_check.py` re-parses every reply with the rule-based parser alone (the engine with the language
+model step switched off), drops the replies that no rule can read instead of storing a random option or zero, and
+repeats analyses A1 to A6 on the result. It first checks that the stored values rebuild
+`summary_data/behavioral_profiles.csv` byte for byte and that its copies of the analyses reproduce the released A1 to
+A6 results, and it stops if either check fails. The re-parse changed 83 of the 245 numbers checked from the Abstract
+and Results at their printed precision, mostly in the third decimal; no reported test crossed P = 0.05, no coefficient
+of variation crossed 0.150, and the cooperation range and every endgame type were unchanged. Run it with
+`bash reproduce.sh --with-reparse-check`, or on its own after the main analyses:
+
+```bash
+python analysis/reparse_check.py --workers 4   # about ten minutes; --selftest runs only its fixtures
+```
+
+It writes `summary_data/reparse_check/`: the re-parsed trial-level data (`behavioral_profiles.csv`, without Colonel
+Blotto and multi-issue negotiation), the A1 to A6 results on it (named as in `summary_data/`), `parse_summary.json`
+(for every game, how many replies the re-parse keeps, changes or drops) and `printed_numbers.csv`, which sets every
+number printed in the Abstract and Results beside its value with the stored parse (`stored_full`), with the stored
+parse without the two unscored games (`stored_excl`) and with the re-parse (`judge_free`), and marks the numbers that
+change at the precision printed.
+
 ### The reasoning-text clustering
 
-`analysis/reasoning_text_clustering.py` reads the reasoning text of every model decision in the raw trial files,
-embeds it (TF-IDF with 5,000 features reduced to 384 dimensions by truncated SVD), and computes each model's centroid,
-the cosine distances between centroids, UMAP, t-SNE and PCA projections, an average-linkage clustering, silhouette
-scores with developer as the label, the Jensen-Shannon distances between the models' choice distributions, and
-per-model behavioral signatures (including the frequency of strategy terms). `analysis/reasoning_text_robustness.py`
-repeats the developer-separation statistics with the sentence-transformer embedding all-MiniLM-L6-v2. Both write to
-`summary_data/reasoning_text_clustering/`; several of its file names begin with "hodoscope", the name the code gives
-this analysis.
+`analysis/reasoning_text_clustering.py` reads the visible reply text of every player in every round of the raw trial
+files (the `reasoning` field of each round, not the `thinking` field): 645,190 texts of at least 30 characters, 636,759
+from the models and 8,431 from fixed strategies. It subsamples 41,520 of them uniformly across the 34 agents (25 models
+and nine fixed strategies), embeds them (TF-IDF with 5,000 features reduced to 384 dimensions by truncated SVD), and
+computes each model's centroid, the cosine distances between centroids, UMAP, t-SNE and PCA projections, an
+average-linkage clustering, silhouette scores with developer as the label (the fixed strategies form a group of their
+own), the Jensen-Shannon distances between the models' choice distributions, and per-model behavioral signatures
+(including the frequency of strategy terms). The released files were computed without umap-learn, so the UMAP step
+fell back to PCA: `centroid_umap.csv` equals `centroid_pca.csv`, `trace_umap.csv` holds the first two principal
+components of 10,000 individual texts, and Supplementary Figs. 3 and 12 label their axes as principal components.
+
+`analysis/reasoning_text_robustness.py` repeats the developer-separation statistics with the sentence-transformer
+embedding all-MiniLM-L6-v2, on the same 41,520 texts and with the same developer labels. It stops unless
+`analysis/check_developer_labels.py` passes and unless the lexical statistics recomputed on its subsample reproduce
+`hodoscope_summary.json`. Across the 25 models, the ratio of the mean between-developer to the mean within-developer
+centroid distance is 1.14 with the lexical embedding and 1.07 with the sentence-transformer embedding, and 0.94 and
+0.84 without Anthropic's models (`models_only` in `robustness_st.json`). Counting the nine fixed strategies as a group
+as well, as `hodoscope_summary.json` does for all 34 agents, gives 1.51 and 2.17. Under both embeddings only
+Anthropic's models group together (mean silhouette 0.39 lexical and 0.30 semantic). `st_centroid_distances.csv` holds
+the cosine distances between the sentence-transformer centroids, as `centroid_distances.csv` does for the lexical
+embedding. Both scripts write to `summary_data/reasoning_text_clustering/`; several of its file names begin with
+"hodoscope", the name the code gives this analysis.
 
 ### Generating the tables and figures
 
@@ -195,7 +283,7 @@ PNG to `figures/out/`; `figlib.save` checks every figure for overlapping or clip
 | Paper | Script | Data |
 |---|---|---|
 | Table 1 | `analysis/category_tables.py` | `A4_table1.csv` |
-| Fig. 1 | `figures/fig1_design.py` | `A4_category_summary.csv`, `behavioral_profiles.csv`, a trial in `sample_data/` |
+| Fig. 1 | `figures/fig1_design.py` | `A4_category_summary.csv`, `behavioral_profiles.csv`, a trial in `sample_data/` with the prompt built by `games/engine.py` |
 | Fig. 2 | `figures/fig2_categories.py` | `A4_category_index.csv` |
 | Fig. 3 | `figures/fig3_explains_and_drift.py` | `A2_variance_shares.csv`, `A7_release_dates.csv`, `A1_same_opponent.csv` |
 | Fig. 4 | `figures/fig4_mechanism.py` | `A6_mechanism.csv` |
@@ -209,12 +297,13 @@ PNG to `figures/out/`; `figlib.save` checks every figure for overlapping or clip
 | Supplementary Fig. 9 | `figS9_crossplay_matrix.py` | the raw prisoner's dilemma trials |
 | Supplementary Fig. 10 | `figS10_coverage.py` | `behavioral_profiles.csv` |
 | Supplementary Fig. 11 | `figS11_reciprocity_profiles.py` | `reciprocity.csv` |
-| Supplementary Fig. 12 | `figS12_developer_clustering.py` | `trace_umap.csv`, `centroid_umap.csv`, `hodoscope_summary.json` |
+| Supplementary Fig. 12 | `figS12_developer_clustering.py` | `centroid_pca.csv`, `hodoscope_summary.json` |
 | Supplementary Fig. 13 | `figS13_cooperation_distributions.py` | `behavioral_profiles.csv` |
 | Supplementary Fig. 14 | `figS14_strategy_response.py` | `A1_by_opponent.csv` |
 | Supplementary Fig. 15 | `figS15_crossplay_effects.py` | the raw prisoner's dilemma trials |
-| Supplementary Fig. 16 | `figS16_thinking_comparison.py` | `behavioral_profiles.csv` |
-| Supplementary Tables 1 to 10 | `supplementary_tables/build_tables.py` | `A7_release_dates.csv`, A1 to A6, `reciprocity.csv`, `hodoscope_summary.json`, `robustness_st.json` |
+| Supplementary Fig. 16 | `figS16_thinking_comparison.py` | `A4_category_index.csv` |
+| Supplementary Tables 1 to 10 | `supplementary_tables/build_tables.py` | `A7_release_dates.csv`, the requested identifiers in `data_collection/models.py`, A1 to A6, `reciprocity.csv`, `hodoscope_summary.json`, `robustness_st.json` |
+| Re-parsing check (Methods; Supplementary Note 12) | `analysis/reparse_check.py` | the raw trial files, `behavioral_profiles.csv`, A1 to A6 |
 
 ### Running the study from the start
 
@@ -232,14 +321,22 @@ python data_collection/run.py --design frontier             # 9 frontier models,
 python analysis/behavioral_profiles.py                      # the trial-level data from the new trial files
 ```
 
-The complete design runs 16 models on the 38 games at five trials per cell, against every programmed opponent of each
-game, against themselves and against each of the other 15 models (120 pairs). The frontier design runs nine frontier
-models at one trial per cell against the programmed opponents and against themselves. Supplementary Table 1 labels them
-F and G. Every model received the same prompts for each game at temperature 1.0, with the option letters randomized
-in each trial.
+A cell is one model, one game and one opponent. The complete design runs 16 models on the 38 games against every
+programmed opponent of each game, against themselves and against each of the other 15 models (120 pairs), and asks for
+five trials per cell. The frontier design runs nine frontier models against the programmed opponents and against
+themselves, with one trial per cell. Supplementary Table 1 labels them F and G. Every model received the same prompts
+for each game at temperature 1.0 (apart from seven early trials at temperature 0), with the option letters randomized in
+each trial; the rules of the game went as the system message, and the history and the question as the user message.
+
+In the released corpus, the 16 models played all three matchup types with five trials in most cells: the corpus holds
+47,962 of a possible 54,560 trials. Every one of the 10,912 cells has one to six trials, and 6,422 of them have at least
+five. The nine frontier models have one trial in most cells: seven of them have every cell, Gemini 3 Pro and Gemini 3.1
+Pro lack 132 and 95 of their 397 cells, and 496 cells hold two to four trials from earlier runs. A partial run added 43 cross-play trials among six frontier models; they enter the pooled rates and the
+cross-play columns of Supplementary Tables 8 and 9, but no cross-play matrix or same-opponent analysis.
+
 Each trial is written to `raw_data/` (or `RAW_DATA_DIR`) as one JSON file; a trial whose file exists is not run again,
-so an interrupted run continues where it stopped. When a reply cannot be read directly, Claude Haiku 4.5 at
-temperature 0 extracts the answer from it (`ENABLE_JUDGE=0` turns this off).
+so an interrupted run continues where it stopped. When the rule-based parser cannot read a reply, Claude Haiku 4.5 at
+temperature 0 extracts the answer from it, as described above (`ENABLE_JUDGE=0` turns this off).
 
 ### Data format
 
@@ -271,15 +368,15 @@ are empty:
 | `mean_guess`, `guess_std`, `k_level_estimate`, `strategic_depth` | strategic depth, beauty contests and the 11 to 20 game: the mean and standard deviation of the guesses, the level k whose guess is closest to the mean guess, and one minus the mean guess divided by 50 (clamped to 0 to 1) |
 | `mean_take_node`, `take_node_std`, `backward_induction_compliance`, `pass_rate` | strategic depth, centipede games: the mean and standard deviation of the node at which the model took (one past the last node when it passed throughout), the share of rounds in which it took at the first node (the subgame-perfect choice), and the share in which it passed at every node |
 | `distance_to_equilibrium` | the distance of the mean choice from the equilibrium (cooperation, beauty contests and centipede games) |
-| `mean_bid`, `bid_ratio`, `bid_std` | competition: the mean bid, the mean bid divided by the maximum bid, and its standard deviation |
+| `mean_bid`, `bid_ratio`, `bid_std` | competition: the mean bid, the mean bid divided by the maximum bid, and its standard deviation (in Colonel Blotto, one number of each allocation; not scored) |
 | `amount_sent`, `trust_index`, `amount_returned` | trust: the mean amount sent, the amount sent divided by the endowment, and the mean amount the other player returned |
 | `offer_amount`, `offer_ratio`, `offer_std`, `rejection_rate` | fairness: the mean offer, the offer divided by the endowment, its standard deviation, and the share of rounds in which the offer was rejected |
-| `demand_level`, `demand_ratio`, `demand_std` | negotiation: the mean demand, the demand divided by the surplus, and its standard deviation |
+| `demand_level`, `demand_ratio`, `demand_std` | negotiation: the mean demand, the demand divided by the surplus, and its standard deviation (in multi-issue negotiation, one of the two demands; not scored) |
 | `risk_taking_rate`, `safe_rate` | risk taking: the share of rounds with the risky option (going straight in chicken) and with the safe option |
 
 The eight category indices of the paper (Table 1) are `coordination_rate`, `strategic_depth`, `bid_ratio`,
-`cooperation_rate` (the four prisoner's dilemma variants), `trust_index`, `offer_ratio`, `demand_ratio` and
-`risk_taking_rate`, averaged as described for A4.
+`cooperation_rate`, `trust_index`, `offer_ratio`, `demand_ratio` and `risk_taking_rate`, each pooled over the index
+games listed under "The category indices (Table 1)" above and averaged as described for A4.
 
 ### Models, games and opponents
 
@@ -292,9 +389,20 @@ The eight category indices of the paper (Table 1) are `coordination_rate`, `stra
 
 The nine frontier models are Claude Sonnet 4.5 and 4.6, Claude Opus 4.5 and 4.6, GPT-4.1, GPT-5.3, GPT-5.4, Gemini 3
 Pro and Gemini 3.1 Pro. The API identifier of each model is in `data_collection/models.py`, and its release date and
-snapshot in `summary_data/A7_release_dates.csv`. `python data_collection/run.py --list-games` lists the 38 games with
-their number of rounds, and `games/strategies.py` maps each game to its programmed opponents (three to twenty per
-game; the four prisoner's dilemma variants have sixteen).
+snapshot in `summary_data/A7_release_dates.csv`; Supplementary Table 1 lists the identifier and route the configuration
+requests for each model. `python data_collection/run.py --list-games` lists the 38 games with their number of rounds,
+and `games/strategies.py` maps each game to its programmed opponents (three to twenty per game; the four prisoner's
+dilemma variants have sixteen).
+
+The Anthropic and OpenAI models were called through the developers' own APIs, Gemini 3 Pro and Gemini 3.1 Pro through
+Google Vertex AI, and the DeepSeek, Meta, Mistral and Alibaba models through OpenRouter. The configuration sends the
+four Gemini Flash models through OpenRouter as well, but the stored costs of their trials match Google's own model
+identifiers, so they may have used Google's API; the trial files do not name the route. Most models could return up to
+4,096 output tokens (`data_collection/runner.py`). GPT-5 Mini, GPT-5 Nano, GPT-5.3 and GPT-5.4 could return up to
+8,192, Claude Haiku 4.5 (Thinking) up to 8,192 with a thinking budget of 4,096, and Gemini 3 Pro and Gemini 3.1 Pro up
+to 16,384 (`data_collection/api.py`). The released settings of Gemini 2.5 Flash (Thinking) match those of Gemini 2.5
+Flash, although only its trials carry reasoning text, so its thinking setting at collection is not recorded. Calls that
+failed with a rate-limit or capacity error were retried up to four times, after waits of 2, 4, 8 and 16 seconds.
 
 ## Licence
 

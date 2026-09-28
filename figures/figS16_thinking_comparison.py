@@ -1,107 +1,107 @@
-"""Supplementary Fig. 16: the three pairs of models with and without a reasoning mode, compared on the eight
-category measures (the mean over all of a model's trials in the category's games).
+"""Supplementary Fig. 16: standard and thinking configurations on the eight category indices.
 
-Reads summary_data/behavioral_profiles.csv and writes figures/out/figS16_thinking_comparison.pdf and .png.
+The values are the category indices of Fig. 2 and Supplementary Fig. 1 (summary_data/A4_category_index.csv:
+strategy-play against the common opponents of each category, opponents weighted equally, 95 percent bootstrap
+intervals), so every bar here equals the matching cell of Supplementary Fig. 1.
+
+The pairs are found from the model list in analysis/common.py, not typed: a model whose key is another model's key
+plus "-thinking" (the same snapshot called with thinking on), and a product line holding exactly two models, one with
+reasoning and one without (DeepSeek V3 and DeepSeek R1, which are two different models). The script stops if it finds
+a number of pairs other than three.
 
     python figures/figS16_thinking_comparison.py
 """
 import numpy as np
+import pandas as pd
+from matplotlib.colors import to_rgb
+from matplotlib.patches import Patch
 
-from compact_style import CAT_LABEL, DOUBLE, RC, SUMMARY, _c, _hide_spines, _lab, _save, plt, read_csv
+import figlib
+from figlib import plt
+from fig2_categories import DATA, CATEGORIES
 
-# The measure of each category: the mean of this column over all of a model's trials in the category's games.
-CATEGORY_MEASURES = {
-    "cooperation": "cooperation_rate", "coordination": "coordination_rate", "fairness": "offer_ratio",
-    "depth": "strategic_depth", "trust": "trust_index", "competition": "bid_ratio",
-    "negotiation": "demand_ratio", "risk": "risk_taking_rate",
-}
+from common import MODELS
 
 
-def category_means():
-    """{model: {"radar": {category: {"value": mean}}}} from the trial-level data, rounded to four decimals."""
-    trials = {}
-    for row in read_csv(SUMMARY / "behavioral_profiles.csv"):
-        trials.setdefault(row["model_key"], []).append(row)
-    models = {}
-    for model, rows in trials.items():
-        by_cat = {}
-        for t in rows:
-            if t.get("game_category"):
-                by_cat.setdefault(t["game_category"], []).append(t)
-        radar = {}
-        for cat, metric in CATEGORY_MEASURES.items():
-            vals = [t[metric] for t in by_cat.get(cat, []) if t.get(metric) is not None]
-            radar[cat] = {"value": round(sum(vals) / len(vals), 4) if vals else None}
-        models[model] = {"radar": radar}
-    return models
+def find_pairs():
+    """(standard key, reasoning key, same_snapshot) for every standard and reasoning pair in the model list."""
+    pairs = []
+    for key, (_, _, _, _, reasoning) in MODELS.items():
+        base = key[: -len("-thinking")] if key.endswith("-thinking") else None
+        if reasoning and base in MODELS and not MODELS[base][4]:
+            pairs.append((base, key, True))
+    paired = {k for p in pairs for k in p[:2]}
+    lines = {}
+    for key, (_, _, line, _, reasoning) in MODELS.items():
+        lines.setdefault(line, []).append((key, reasoning))
+    for line, members in lines.items():
+        if len(members) == 2 and sorted(r for _, r in members) == [False, True] and not paired & {k for k, _ in members}:
+            standard = next(k for k, r in members if not r)
+            thinking = next(k for k, r in members if r)
+            pairs.append((standard, thinking, False))
+    if len(pairs) != 3:
+        raise ValueError(f"Expected three standard and reasoning pairs, found {pairs}")
+    return pairs
+
+
+def tint(hex_color, share):
+    rgb = np.array(to_rgb(hex_color))
+    return tuple(rgb + (1 - rgb) * share)
 
 
 def build():
-    """Paired comparison of thinking vs non-thinking models."""
-    print("Supplementary Fig. 16, thinking comparison")
-
-    models_j = category_means()
-
-    # Thinking pairs
-    pairs = [
-        ("claude-haiku-4.5", "claude-haiku-4.5-thinking"),
-        ("gemini-2.5-flash", "gemini-2.5-flash-thinking"),
-        ("deepseek-v3",      "deepseek-r1"),
-    ]
-    pair_labels = [
-        "Claude Haiku 4.5",
-        "Gemini 2.5 Flash",
-        "DeepSeek V3 / R1",
-    ]
-
-    # Dimensions to compare
-    dims = ["cooperation", "coordination", "fairness", "depth",
-            "trust", "competition", "negotiation", "risk"]
-    dim_labels = [CAT_LABEL.get(d, d) for d in dims]
-
-    with plt.rc_context(RC):
-        fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 2.4), sharey=True)
-
-        bar_width = 0.35
-        x = np.arange(len(dims))
-
-        for pidx, (base, think) in enumerate(pairs):
-            ax = axes[pidx]
-
-            base_vals = []
-            think_vals = []
-            for d in dims:
-                bv = models_j.get(base, {}).get("radar", {}).get(d, {})
-                tv = models_j.get(think, {}).get("radar", {}).get(d, {})
-                base_vals.append(bv.get("value", 0) * 100)
-                think_vals.append(tv.get("value", 0) * 100)
-
-            bars1 = ax.barh(x + bar_width / 2, base_vals,
-                            bar_width, color=_c(base), alpha=0.6,
-                            edgecolor="white", linewidth=0.3,
-                            label="Standard")
-            bars2 = ax.barh(x - bar_width / 2, think_vals,
-                            bar_width, color=_c(think), alpha=0.9,
-                            edgecolor="white", linewidth=0.3,
-                            label="Thinking")
-
-            ax.set_title(pair_labels[pidx], fontsize=7, fontweight="bold")
-            ax.set_xlim(0, 105)
-            ax.set_yticks(x)
-            if pidx == 0:
-                ax.set_yticklabels(dim_labels, fontsize=5.5)
-            ax.invert_yaxis()
-            _hide_spines(ax)
-
-            if pidx == 0:
-                ax.legend(fontsize=5, loc="lower right")
-
-            _lab(ax, chr(97 + pidx))
-
-        axes[1].set_xlabel("Score (%)")
-        fig.tight_layout(w_pad=0.8)
-        _save(fig, "figS16_thinking_comparison")
+    figlib.style()
+    data = pd.read_csv(DATA / "A4_category_index.csv")
+    if data.duplicated(["model_key", "category"]).any():
+        raise ValueError("Duplicate model-category estimates.")
+    pairs = find_pairs()
+    categories = [entry[0] for entry in CATEGORIES]
+    names = [entry[1] for entry in CATEGORIES]
+    table = data.set_index(["model_key", "category"])
+    fig, axes = plt.subplots(1, 3, figsize=(7.2, 3.55), sharey=True)
+    fig.subplots_adjust(left=0.115, right=0.985, top=0.86, bottom=0.30, wspace=0.12)
+    rows = np.arange(len(categories))
+    height = 0.36
+    for index, (panel, (standard, thinking, same_snapshot)) in enumerate(zip(axes, pairs)):
+        developer = MODELS[standard][1]
+        full = figlib.color(developer)
+        light = tint(full, 0.55)
+        if same_snapshot:
+            title = MODELS[standard][0]
+            labels = ("Standard", "Extended thinking" if developer == "Anthropic" else "Thinking")
+        else:
+            title = f"{MODELS[standard][0]} and {MODELS[thinking][0]}"
+            labels = (f"{MODELS[standard][0]}, standard", f"{MODELS[thinking][0]}, reasoning")
+        for offset, key, shade in ((-height / 2 - 0.02, standard, light), (height / 2 + 0.02, thinking, full)):
+            cells = table.loc[[(key, c) for c in categories]]
+            means, lo, hi = (cells[c].to_numpy() * 100 for c in ("mean", "ci_lo", "ci_hi"))
+            if not (np.isfinite(means).all() and np.isfinite(lo).all() and np.isfinite(hi).all()):
+                raise ValueError(f"Missing category estimates for {key}")
+            positions = rows + offset
+            panel.barh(positions, means, height=height, color=shade, edgecolor="none", zorder=2)
+            panel.hlines(positions, lo, hi, color=figlib.PALETTE["ink"], linewidth=0.6, zorder=3)
+            for y, value, right in zip(positions, means, hi):
+                panel.text(right + 1.6, y, f"{value:.1f}", va="center", ha="left", fontsize=6,
+                           color=figlib.PALETTE["ink"], gid=f"value:{key}")
+        panel.set_ylim(len(categories) - 0.45, -0.55)
+        panel.set_yticks(rows, names)
+        panel.tick_params(axis="y", length=0, pad=4)
+        panel.set_xlim(0, 112)
+        panel.set_xticks([0, 25, 50, 75, 100])
+        panel.spines["left"].set_visible(False)
+        panel.set_title(title, fontsize=7, pad=10)
+        panel.text(-0.02, 1.045, chr(ord("a") + index), transform=panel.transAxes, fontsize=8, weight="bold", va="bottom")
+        panel.legend(handles=[Patch(color=light, label=labels[0]), Patch(color=full, label=labels[1])],
+                     loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=1, frameon=False,
+                     handlelength=1.1, handletextpad=0.4, borderaxespad=0)
+    axes[1].set_xlabel("Category index (0 to 100)", labelpad=4)
+    fig.text(0.5, 0.035, "Bars, the category indices of Fig. 2 and Supplementary Fig. 1; lines, 95% intervals. "
+             "Panels a and b switch thinking on in one model; panel c compares two models.",
+             ha="center", fontsize=6.5, color=figlib.PALETTE["benchmark"])
+    return fig, pairs
 
 
 if __name__ == "__main__":
-    build()
+    fig, pairs = build()
+    print("pairs:", pairs)
+    figlib.save(fig, "figS16_thinking_comparison")

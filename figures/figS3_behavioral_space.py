@@ -50,7 +50,9 @@ def build():
         names = " / ".join(key.replace("_", " ").capitalize() for key in group.model_key)
         axis.scatter(horizontal_value, vertical_value, marker="D", s=24, color=figlib.PALETTE["strategy"], edgecolor="white", linewidth=0.35, zorder=4)
         points.append((horizontal_value, vertical_value, names, figlib.PALETTE["benchmark"]))
-    axis.set(xlim=(-0.43, 1.02), ylim=(-0.62, 0.74), xlabel="UMAP 1", ylabel="UMAP 2")
+    # trace_umap.csv and centroid_umap.csv hold the clustering's PCA fallback (umap-learn was not installed;
+    # centroid_umap.csv equals centroid_pca.csv), so the axes are principal components, not UMAP dimensions
+    axis.set(xlim=(-0.43, 1.02), ylim=(-0.62, 0.74), xlabel="Principal component 1", ylabel="Principal component 2")
     axis.set_xticks(np.arange(-0.4, 1.01, 0.2))
     axis.set_yticks(np.arange(-0.6, 0.71, 0.2))
     handles = [Line2D([], [], marker="o", linestyle="none", color=figlib.color(developer), label=developer, markersize=4) for developer in DEVELOPER_ORDER]

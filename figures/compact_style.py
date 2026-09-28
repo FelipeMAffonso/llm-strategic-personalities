@@ -1,12 +1,11 @@
-"""Style and helpers shared by Supplementary Figs. 4, 8, 11, 12 and 16.
+"""Style and helpers shared by Supplementary Figs. 4, 8 and 11.
 
-These five figures use their own compact style (the Okabe-Ito developer colors below, short model names, tight
+These three figures use their own compact style (the Okabe-Ito developer colors below, short model names, tight
 bounding boxes), which differs from figlib.py. Each figure is written to figures/out/ as PDF and PNG at 600 dpi.
 """
 from __future__ import annotations
 
 import csv
-import json
 import warnings
 from pathlib import Path
 
@@ -102,18 +101,6 @@ SHORT = {
     "qwen3.5-flash":             "Qwen 3.5",
 }
 
-CAT_LABEL = {
-    "cooperation":  "Cooperation",
-    "coordination": "Coordination",
-    "trust":        "Trust",
-    "fairness":     "Fairness",
-    "depth":        "Depth",
-    "competition":  "Competition",
-    "negotiation":  "Negotiation",
-    "risk":         "Risk",
-}
-
-
 def _prov(k):
     lo = k.lower()
     if "claude" in lo:                                    return "anthropic"
@@ -138,11 +125,6 @@ def _sort(keys, coop=None):
         return (pi, r)
     return sorted(keys, key=key_fn)
 
-def _lab(ax, t, x=-0.07, y=1.06):
-    """Bold lowercase panel label."""
-    ax.text(x, y, t, transform=ax.transAxes,
-            fontsize=8, fontweight="bold", va="top", ha="left")
-
 def _save(fig, name):
     OUT.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png"):
@@ -156,10 +138,6 @@ def _prov_legend(ax, provs=None, marker="o", ms=3.5, **kwargs):
     hs = [ax.plot([], [], marker, color=C[p], ms=ms, ls="none",
                   label=PROV_LABEL.get(p, p))[0] for p in provs]
     ax.legend(handles=hs, **kwargs)
-
-def _hide_spines(ax):
-    for s in ax.spines.values():
-        s.set_visible(False)
 
 
 def read_csv(path: Path) -> list[dict]:
@@ -181,9 +159,3 @@ def read_csv(path: Path) -> list[dict]:
                         converted[k] = v
             rows.append(converted)
     return rows
-
-
-def read_clustering_summary() -> dict:
-    """The reasoning-text clustering summary (NaN values read as None)."""
-    with open(CLUSTERING / "hodoscope_summary.json", "r", encoding="utf-8") as f:
-        return json.loads(f.read().replace(": NaN", ": null"))

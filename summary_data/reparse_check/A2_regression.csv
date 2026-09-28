@@ -1,0 +1,30 @@
+,coef,se,p
+Intercept,0.4621,0.179,0.0099
+C(opponent)[T.always_defect],-0.3882,0.0631,0.0
+C(opponent)[T.anti_mirror],-0.2687,0.049,0.0
+C(opponent)[T.defect_once],-0.1366,0.0401,0.0007
+C(opponent)[T.false_defector],-0.2941,0.0571,0.0
+C(opponent)[T.grim_trigger],0.019,0.0272,0.4859
+C(opponent)[T.hard_tft],0.0025,0.0258,0.922
+C(opponent)[T.mirror],-0.134,0.0393,0.0007
+C(opponent)[T.noise_10],-0.0584,0.03,0.0518
+C(opponent)[T.noise_20],-0.1444,0.0325,0.0
+C(opponent)[T.pavlov],0.0188,0.0193,0.3301
+C(opponent)[T.random],-0.2499,0.0475,0.0
+C(opponent)[T.reverse_tft],-0.2875,0.0545,0.0
+C(opponent)[T.suspicious_tft],-0.3126,0.0567,0.0
+C(opponent)[T.tit_for_tat],-0.0171,0.0267,0.5235
+C(opponent)[T.tit_for_two_tats],0.0074,0.0211,0.7241
+C(game_id)[T.pd_harsh],-0.0305,0.0137,0.0258
+C(game_id)[T.pd_medium],-0.018,0.0135,0.1837
+C(game_id)[T.pd_mild],-0.0007,0.0167,0.9676
+"C(developer, Treatment(reference='OpenAI'))[T.Alibaba]",0.1734,0.1629,0.287
+"C(developer, Treatment(reference='OpenAI'))[T.Anthropic]",0.262,0.1054,0.0129
+"C(developer, Treatment(reference='OpenAI'))[T.DeepSeek]",-0.1699,0.1589,0.2852
+"C(developer, Treatment(reference='OpenAI'))[T.Google]",-0.0651,0.1419,0.6463
+"C(developer, Treatment(reference='OpenAI'))[T.Meta]",-0.2405,0.1242,0.0528
+"C(developer, Treatment(reference='OpenAI'))[T.Mistral]",0.2062,0.1345,0.1251
+"C(size_tier, Treatment(reference='small'))[T.frontier]",0.2697,0.1161,0.0202
+"C(size_tier, Treatment(reference='small'))[T.medium]",0.1763,0.0628,0.005
+reasoning,-0.0119,0.0699,0.8649
+release_years,-0.1012,0.2001,0.6129

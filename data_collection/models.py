@@ -26,7 +26,10 @@ ALL_MODELS = {
     "gpt-5-nano":                   {"provider": "openai", "model_id": "gpt-5-nano",                   "thinking": False},
     "gpt-5.3":                      {"provider": "openai", "model_id": "gpt-5.3-chat-latest",          "thinking": False},
     "gpt-5.4":                      {"provider": "openai", "model_id": "gpt-5.4",                      "thinking": False},
-    # Google (Gemini 2.0 to 3 Flash through OpenRouter, Gemini 3 Pro and 3.1 Pro through Vertex AI)
+    # Google (Gemini 2.0 to 3 Flash through OpenRouter, Gemini 3 Pro and 3.1 Pro through Vertex AI). The stored costs
+    # of the Gemini Flash trials match Google's own model identifiers, so these models may have used Google's API;
+    # the trial files do not name the route. Gemini 2.5 Flash (Thinking) has the same settings here as Gemini 2.5
+    # Flash, although only its trials carry reasoning text, so its thinking setting at collection is not recorded.
     "gemini-2.0-flash":             {"provider": "openrouter", "model_id": "google/gemini-2.0-flash-001",    "thinking": False},
     "gemini-2.5-flash":             {"provider": "openrouter", "model_id": "google/gemini-2.5-flash",        "thinking": False},
     "gemini-2.5-flash-thinking":    {"provider": "openrouter", "model_id": "google/gemini-2.5-flash",        "thinking": False},

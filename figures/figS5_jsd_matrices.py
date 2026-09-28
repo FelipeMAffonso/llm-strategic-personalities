@@ -1,3 +1,12 @@
+"""Supplementary Fig. 5: Jensen-Shannon distances between the models' choice distributions, averaged over the 36
+scored games (a), the cooperation games (b) and the three scored competition games (c).
+
+Colonel Blotto and multi-issue negotiation are left out: each answer needed several numbers and the parser kept one,
+so their choice distributions do not describe the models' play. The script first checks that averaging all 38
+per-game matrices reproduces the stored aggregate (summary_data/reasoning_text_clustering/aggregate_jsd.csv).
+
+    python figures/figS5_jsd_matrices.py
+"""
 from pathlib import Path
 
 import numpy as np
@@ -9,26 +18,53 @@ from figlib import plt
 
 from common import CATEGORIES, DEVELOPER_ORDER, MODELS
 
+SOURCE = Path(figlib.CLUSTERING)
+UNSCORED = {"colonel_blotto", "multi_issue"}
+
+
+def per_game():
+    matrices = {path.name[:-len("_jsd.csv")]: pd.read_csv(path, index_col=0) for path in sorted(SOURCE.glob("jsd_per_game/*_jsd.csv"))}
+    assert all(matrix.notna().all().all() for matrix in matrices.values())
+    return matrices
+
+
+def average(matrices, games, labels):
+    """Mean over the games in which both agents of a pair appear, as compute_aggregate_jsd in
+    analysis/reasoning_text_clustering.py builds aggregate_jsd.csv: per cell, the sum over available games divided by
+    their number; a pair that never shares a game gets 0 there (only fixed strategies, never two models)."""
+    parts = np.array([matrices[game].reindex(index=labels, columns=labels).to_numpy() for game in games])
+    counts = np.isfinite(parts).sum(axis=0)
+    return np.nansum(parts, axis=0) / np.maximum(counts, 1), counts
+
 
 def build():
     figlib.style()
-    source = Path(figlib.CLUSTERING)
     keys = sorted(MODELS, key=lambda key: DEVELOPER_ORDER.index(MODELS[key][1]))
-    matrices = [pd.read_csv(source / "aggregate_jsd.csv", index_col=0).loc[keys, keys].to_numpy()]
+    games = per_game()
+    # the averaging reproduces the stored 38-game aggregate before the two unscored games are dropped
+    aggregate = pd.read_csv(SOURCE / "aggregate_jsd.csv", index_col=0)
+    assert len(games) == 38
+    reproduced, _ = average(games, sorted(games), list(aggregate.index))
+    assert np.abs(reproduced - aggregate.to_numpy()).max() < 1e-12
+    scored = [game for game in sorted(games) if game not in UNSCORED]
+    panels = [("all", scored, f"All {len(scored)} games")]
     for category in ["cooperation", "competition"]:
-        games = next(entry[2] for entry in CATEGORIES if entry[0] == category)
-        parts = np.array([pd.read_csv(source / f"jsd_per_game/{game}_jsd.csv", index_col=0).reindex(index=keys, columns=keys).to_numpy() for game in games])
-        counts = np.isfinite(parts).sum(axis=0)
-        assert counts.min() > 0
-        matrices.append(np.nanmean(parts, axis=0))
-        print(f"{category}: {len(games)} game matrices; available games per cell {counts.min()} to {counts.max()}")
+        members = [game for game in next(entry[2] for entry in CATEGORIES if entry[0] == category) if game not in UNSCORED]
+        panels.append((category, members, f"{category.capitalize()} games ({len(members)})"))
+    matrices, titles, notes = [], [], []
+    for name, members, title in panels:
+        matrix, counts = average(games, members, keys)
+        assert counts.min() > 0  # every pair of models shares at least one game in the panel
+        matrices.append(matrix)
+        titles.append(title)
+        notes.append(f"{'all games' if name == 'all' else name} {counts.min()} to {counts.max()}")
+        print(f"{title}: {len(members)} game matrices; available games per cell {counts.min()} to {counts.max()}")
     for matrix in matrices:
         assert matrix.shape == (25, 25) and np.isfinite(matrix).all()
         assert np.allclose(matrix, matrix.T) and np.allclose(np.diag(matrix), 0)
     maximum = max(matrix.max() for matrix in matrices)
     fig = plt.figure(figsize=(7.2, 11.2))
     cmap = LinearSegmentedColormap.from_list("distance", ["white", figlib.color("Google"), figlib.color("Alibaba")])
-    titles = ["All 38 games", "Cooperation games", "Competition games"]
     labels = [MODELS[key][0] for key in keys]
     for position, (matrix, title, bottom) in enumerate(zip(matrices, titles, [0.735, 0.475, 0.215])):
         axis = fig.add_axes([0.265, bottom, 0.70, 0.225])
@@ -52,7 +88,7 @@ def build():
     colorbar.set_ticks(np.arange(0, maximum + 0.001, 0.1))
     colorbar.set_label("Jensen-Shannon distance", labelpad=5)
     colorbar.outline.set_visible(False)
-    fig.text(0.5, 0.012, "Available-game means: cooperation 2 to 10; competition 1 to 4 games per cell", ha="center", fontsize=6,
+    fig.text(0.5, 0.012, "Available-game means: " + "; ".join(notes) + " games per cell", ha="center", fontsize=6,
              color=figlib.PALETTE["benchmark"])
     print("Shared maximum:", maximum)
     return fig

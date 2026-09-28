@@ -91,20 +91,20 @@
     "trust"
   ],
   "provider_separation": {
-    "silhouette_score": 0.0011,
+    "silhouette_score": 0.0126,
     "per_model_silhouette": {
-      "always_football": 0.0739,
-      "always_signal": 0.3737,
-      "anti_mirror": 0.3741,
-      "bayesian_receiver": 0.3737,
-      "claude-haiku-4.5": 0.3957,
-      "claude-haiku-4.5-thinking": 0.1992,
-      "claude-opus-4.5": 0.6087,
-      "claude-opus-4.6": 0.5831,
-      "claude-sonnet-4.5": 0.6163,
+      "always_football": 0.0906,
+      "always_signal": 0.4423,
+      "anti_mirror": 0.4428,
+      "bayesian_receiver": 0.4423,
+      "claude-haiku-4.5": 0.1888,
+      "claude-haiku-4.5-thinking": 0.1206,
+      "claude-opus-4.5": 0.5421,
+      "claude-opus-4.6": 0.5481,
+      "claude-sonnet-4.5": 0.4513,
       "claude-sonnet-4.6": 0.4868,
-      "deepseek-r1": 0.1394,
-      "deepseek-v3": -0.3455,
+      "deepseek-r1": -0.1363,
+      "deepseek-v3": -0.4278,
       "gemini-2.0-flash": -0.2519,
       "gemini-2.5-flash": 0.0185,
       "gemini-2.5-flash-thinking": -0.0659,
@@ -116,26 +116,26 @@
       "gpt-4.1-nano": -0.6037,
       "gpt-4o-mini": -0.6807,
       "gpt-5-mini": 0.0582,
-      "gpt-5-nano": 0.0057,
+      "gpt-5-nano": -0.0173,
       "gpt-5.3": -0.1256,
       "gpt-5.4": 0.0025,
       "llama-3.3-70b": 0.0,
-      "ministral-14b": -0.852,
-      "mirror": 0.1172,
-      "never_signal": 0.2048,
+      "ministral-14b": 0.0,
+      "mirror": 0.1561,
+      "never_signal": 0.2483,
       "qwen3.5-flash": 0.0,
-      "random_strategy": 0.3913,
-      "reverse_tit_for_tat": 0.1633,
-      "trust_proportional": 0.2274
+      "random_strategy": 0.4654,
+      "reverse_tit_for_tat": 0.1916,
+      "trust_proportional": 0.2902
     },
-    "mean_within_provider_distance": 0.4072,
-    "mean_between_provider_distance": 0.5435,
-    "provider_separation_ratio": 1.3348,
+    "mean_within_provider_distance": 0.3642,
+    "mean_between_provider_distance": 0.5497,
+    "provider_separation_ratio": 1.509,
     "provider_labels": {
-      "always_football": "other",
-      "always_signal": "other",
-      "anti_mirror": "other",
-      "bayesian_receiver": "other",
+      "always_football": "strategy",
+      "always_signal": "strategy",
+      "anti_mirror": "strategy",
+      "bayesian_receiver": "strategy",
       "claude-haiku-4.5": "anthropic",
       "claude-haiku-4.5-thinking": "anthropic",
       "claude-opus-4.5": "anthropic",
@@ -159,15 +159,15 @@
       "gpt-5.3": "openai",
       "gpt-5.4": "openai",
       "llama-3.3-70b": "meta",
-      "ministral-14b": "other",
-      "mirror": "other",
-      "never_signal": "other",
+      "ministral-14b": "mistral",
+      "mirror": "strategy",
+      "never_signal": "strategy",
       "qwen3.5-flash": "alibaba",
-      "random_strategy": "other",
-      "reverse_tit_for_tat": "other",
-      "trust_proportional": "other"
+      "random_strategy": "strategy",
+      "reverse_tit_for_tat": "strategy",
+      "trust_proportional": "strategy"
     },
-    "n_providers": 7
+    "n_providers": 8
   },
   "cluster_assignments": {
     "k2": {
@@ -320,28 +320,28 @@
       "n_traces": 20,
       "spread": 0.0,
       "std": 0.0,
-      "provider": "other",
+      "provider": "strategy",
       "family": "always_football"
     },
     "always_signal": {
       "n_traces": 1470,
       "spread": 0.0,
       "std": 0.0,
-      "provider": "other",
+      "provider": "strategy",
       "family": "always_signal"
     },
     "anti_mirror": {
       "n_traces": 1470,
       "spread": 0.0053,
       "std": 0.0533,
-      "provider": "other",
+      "provider": "strategy",
       "family": "anti_mirror"
     },
     "bayesian_receiver": {
       "n_traces": 1470,
       "spread": 0.0,
       "std": 0.0,
-      "provider": "other",
+      "provider": "strategy",
       "family": "bayesian_receiver"
     },
     "claude-haiku-4.5": {
@@ -509,21 +509,21 @@
       "n_traces": 1470,
       "spread": 0.9131,
       "std": 0.0784,
-      "provider": "other",
+      "provider": "mistral",
       "family": "ministral-14b"
     },
     "mirror": {
       "n_traces": 35,
       "spread": 0.7984,
       "std": 0.0591,
-      "provider": "other",
+      "provider": "strategy",
       "family": "mirror"
     },
     "never_signal": {
       "n_traces": 1470,
       "spread": 0.0,
       "std": 0.0,
-      "provider": "other",
+      "provider": "strategy",
       "family": "never_signal"
     },
     "qwen3.5-flash": {
@@ -537,21 +537,21 @@
       "n_traces": 1470,
       "spread": 0.5471,
       "std": 0.0448,
-      "provider": "other",
+      "provider": "strategy",
       "family": "random_strategy"
     },
     "reverse_tit_for_tat": {
       "n_traces": 10,
       "spread": 0.203,
       "std": 0.2707,
-      "provider": "other",
+      "provider": "strategy",
       "family": "reverse_tit_for_tat"
     },
     "trust_proportional": {
       "n_traces": 2,
       "spread": 0.0281,
       "std": 0.0,
-      "provider": "other",
+      "provider": "strategy",
       "family": "trust_proportional"
     }
   }

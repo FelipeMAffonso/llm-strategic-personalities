@@ -1,0 +1,28 @@
+{
+  "n_common_opponents": 16,
+  "common_opponents": [
+    "always_cooperate",
+    "always_defect",
+    "anti_mirror",
+    "defect_once",
+    "false_defector",
+    "grim_trigger",
+    "hard_tft",
+    "mirror",
+    "noise_10",
+    "noise_20",
+    "pavlov",
+    "random",
+    "reverse_tft",
+    "suspicious_tft",
+    "tit_for_tat",
+    "tit_for_two_tats"
+  ],
+  "fold_spread_same_opponent": 49.5,
+  "fold_spread_pooled": 51.1,
+  "min_model": "gpt-5-nano",
+  "min_rate": 1.4,
+  "max_model": "claude-opus-4.6",
+  "max_rate": 69.3,
+  "spearman_same_vs_pooled": 0.995
+}

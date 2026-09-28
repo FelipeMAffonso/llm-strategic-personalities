@@ -1,32 +1,32 @@
-**Table S1.** The 25 models: developer, product line, size tier, whether internal reasoning traces were captured, public release date (verified on the developer's page), API snapshot, design and number of trials. Gemini 3 Pro and 3.1 Pro reason by default; the GPT-5 series reasons internally without exposing traces through the endpoint used.
+**Table S1.** The 25 models: developer, product line, size tier, whether internal reasoning traces were captured, public release date (verified on the developer's page), the model identifier and route in the released configuration, design and number of trials. The Gemini Flash models may have used Google's own API (Supplementary Note 4). Gemini 3 Pro and 3.1 Pro reason by default; the GPT-5 series reasons internally without exposing traces through the endpoint used.
 
-| Model | Developer | Product line | Size tier | Reasoning traces captured | Release date | Snapshot | Design | Trials |
+| Model | Developer | Product line | Size tier | Reasoning traces captured | Release date | Requested identifier | Design | Trials |
 |---|---|---|---|---|---|---|---|---|
-| Claude Haiku 4.5 | Anthropic | Haiku | small | no | 2025-10-15 | claude-haiku-4-5-20251001 | F (five trials per cell) | 3781 |
-| Claude Haiku 4.5 (Thinking) | Anthropic | Haiku | small | yes | 2025-10-15 | claude-haiku-4-5-20251001 | F (five trials per cell) | 3588 |
-| Claude Sonnet 4.5 | Anthropic | Sonnet | medium | no | 2025-09-29 | claude-sonnet-4-5-20250929 | G (one trial per cell) | 521 |
-| Claude Sonnet 4.6 | Anthropic | Sonnet | medium | no | 2026-02-17 | claude-sonnet-4-6 | G (one trial per cell) | 513 |
-| Claude Opus 4.5 | Anthropic | Opus | frontier | no | 2025-11-24 | claude-opus-4-5 | G (one trial per cell) | 440 |
-| Claude Opus 4.6 | Anthropic | Opus | frontier | no | 2026-02-05 | claude-opus-4-6 | G (one trial per cell) | 449 |
-| GPT-4o Mini | OpenAI | GPT-4o | small | no | 2024-07-18 | gpt-4o-mini-2024-07-18 | F (five trials per cell) | 2934 |
-| GPT-4.1 | OpenAI | GPT-4.1 | frontier | no | 2025-04-14 | gpt-4.1-2025-04-14 | G (one trial per cell) | 400 |
-| GPT-4.1 Mini | OpenAI | GPT-4.1 | small | no | 2025-04-14 | gpt-4.1-mini-2025-04-14 | F (five trials per cell) | 3006 |
-| GPT-4.1 Nano | OpenAI | GPT-4.1 | small | no | 2025-04-14 | gpt-4.1-nano-2025-04-14 | F (five trials per cell) | 3274 |
-| GPT-5 Mini | OpenAI | GPT-5 | small | no | 2025-08-07 | gpt-5-mini-2025-08-07 | F (five trials per cell) | 2739 |
-| GPT-5 Nano | OpenAI | GPT-5 | small | no | 2025-08-07 | gpt-5-nano-2025-08-07 | F (five trials per cell) | 2507 |
-| GPT-5.3 | OpenAI | GPT-5 | frontier | no | 2026-03-03 | gpt-5.3-chat-latest | G (one trial per cell) | 488 |
-| GPT-5.4 | OpenAI | GPT-5 | frontier | no | 2026-03-05 | gpt-5.4 | G (one trial per cell) | 486 |
-| Gemini 2.0 Flash | Google | Flash | medium | no | 2025-02-05 | gemini-2.0-flash-001 | F (five trials per cell) | 4532 |
-| Gemini 2.5 Flash | Google | Flash | medium | no | 2025-06-17 | gemini-2.5-flash | F (five trials per cell) | 4345 |
-| Gemini 2.5 Flash (Thinking) | Google | Flash | medium | yes | 2025-06-17 | gemini-2.5-flash | F (five trials per cell) | 4107 |
-| Gemini 3 Flash | Google | Flash | medium | no | 2025-12-17 | gemini-3-flash-preview | F (five trials per cell) | 3982 |
-| Gemini 3 Pro | Google | Pro | frontier | yes | 2025-11-18 | gemini-3-pro-preview | G (one trial per cell) | 304 |
-| Gemini 3.1 Pro | Google | Pro | frontier | yes | 2026-02-19 | gemini-3.1-pro-preview | G (one trial per cell) | 336 |
-| DeepSeek V3 | DeepSeek | DeepSeek | frontier | no | 2024-12-26 | deepseek-chat | F (five trials per cell) | 2016 |
-| DeepSeek R1 | DeepSeek | DeepSeek | frontier | yes | 2025-01-20 | deepseek-reasoner | F (five trials per cell) | 1794 |
-| LLaMA 3.3 70B | Meta | LLaMA | medium | no | 2024-12-06 | Llama-3.3-70B-Instruct | F (five trials per cell) | 2105 |
-| Ministral 14B | Mistral | Ministral | small | no | 2025-12-02 | ministral-14b-2512 | F (five trials per cell) | 1730 |
-| Qwen 3.5 Flash | Alibaba | Qwen | medium | no | 2026-02-23 | qwen3.5-flash-2026-02-23 | F (five trials per cell) | 1529 |
+| Claude Haiku 4.5 | Anthropic | Haiku | small | no | 2025-10-15 | claude-haiku-4-5-20251001 (Anthropic API) | F (five trials in most cells) | 3781 |
+| Claude Haiku 4.5 (Thinking) | Anthropic | Haiku | small | yes | 2025-10-15 | claude-haiku-4-5-20251001 (Anthropic API) | F (five trials in most cells) | 3588 |
+| Claude Sonnet 4.5 | Anthropic | Sonnet | medium | no | 2025-09-29 | claude-sonnet-4-5-20250929 (Anthropic API) | G (one trial in most cells) | 521 |
+| Claude Sonnet 4.6 | Anthropic | Sonnet | medium | no | 2026-02-17 | claude-sonnet-4-6 (Anthropic API) | G (one trial in most cells) | 513 |
+| Claude Opus 4.5 | Anthropic | Opus | frontier | no | 2025-11-24 | claude-opus-4-5 (Anthropic API) | G (one trial in most cells) | 440 |
+| Claude Opus 4.6 | Anthropic | Opus | frontier | no | 2026-02-05 | claude-opus-4-6 (Anthropic API) | G (one trial in most cells) | 449 |
+| GPT-4o Mini | OpenAI | GPT-4o | small | no | 2024-07-18 | gpt-4o-mini (OpenAI API) | F (five trials in most cells) | 2934 |
+| GPT-4.1 | OpenAI | GPT-4.1 | frontier | no | 2025-04-14 | gpt-4.1 (OpenAI API) | G (one trial in most cells) | 400 |
+| GPT-4.1 Mini | OpenAI | GPT-4.1 | small | no | 2025-04-14 | gpt-4.1-mini (OpenAI API) | F (five trials in most cells) | 3006 |
+| GPT-4.1 Nano | OpenAI | GPT-4.1 | small | no | 2025-04-14 | gpt-4.1-nano (OpenAI API) | F (five trials in most cells) | 3274 |
+| GPT-5 Mini | OpenAI | GPT-5 | small | no | 2025-08-07 | gpt-5-mini (OpenAI API) | F (five trials in most cells) | 2739 |
+| GPT-5 Nano | OpenAI | GPT-5 | small | no | 2025-08-07 | gpt-5-nano (OpenAI API) | F (five trials in most cells) | 2507 |
+| GPT-5.3 | OpenAI | GPT-5 | frontier | no | 2026-03-03 | gpt-5.3-chat-latest (OpenAI API) | G (one trial in most cells) | 488 |
+| GPT-5.4 | OpenAI | GPT-5 | frontier | no | 2026-03-05 | gpt-5.4 (OpenAI API) | G (one trial in most cells) | 486 |
+| Gemini 2.0 Flash | Google | Flash | medium | no | 2025-02-05 | google/gemini-2.0-flash-001 (OpenRouter) | F (five trials in most cells) | 4532 |
+| Gemini 2.5 Flash | Google | Flash | medium | no | 2025-06-17 | google/gemini-2.5-flash (OpenRouter) | F (five trials in most cells) | 4345 |
+| Gemini 2.5 Flash (Thinking) | Google | Flash | medium | yes | 2025-06-17 | google/gemini-2.5-flash (OpenRouter) | F (five trials in most cells) | 4107 |
+| Gemini 3 Flash | Google | Flash | medium | no | 2025-12-17 | google/gemini-3-flash-preview (OpenRouter) | F (five trials in most cells) | 3982 |
+| Gemini 3 Pro | Google | Pro | frontier | yes | 2025-11-18 | gemini-3-pro-preview (Vertex AI) | G (one trial in most cells) | 304 |
+| Gemini 3.1 Pro | Google | Pro | frontier | yes | 2026-02-19 | gemini-3.1-pro-preview (Vertex AI) | G (one trial in most cells) | 336 |
+| DeepSeek V3 | DeepSeek | DeepSeek | frontier | no | 2025-03-24 | deepseek/deepseek-chat-v3-0324 (OpenRouter) | F (five trials in most cells) | 2016 |
+| DeepSeek R1 | DeepSeek | DeepSeek | frontier | yes | 2025-01-20 | deepseek/deepseek-r1 (OpenRouter) | F (five trials in most cells) | 1794 |
+| LLaMA 3.3 70B | Meta | LLaMA | medium | no | 2024-12-06 | meta-llama/llama-3.3-70b-instruct (OpenRouter) | F (five trials in most cells) | 2105 |
+| Ministral 14B | Mistral | Ministral | small | no | 2025-12-02 | mistralai/ministral-14b-2512 (OpenRouter) | F (five trials in most cells) | 1730 |
+| Qwen 3.5 Flash | Alibaba | Qwen | medium | no | 2026-02-23 | qwen/qwen3.5-flash-02-23 (OpenRouter) | F (five trials in most cells) | 1529 |
 
 
 **Table S2.** Cooperation in the four prisoner's dilemma variants by model: against the 16 fixed opponents every model faced, weighted equally per opponent (the headline measure), and pooled across every matchup the model played, with the 95 percent t-distribution interval on the trial-level pooled values, clipped to the unit range. Sorted by the same-opponent rate.
@@ -123,7 +123,7 @@ Part (b), columns 9 to 16 of 16.
 | Qwen 3.5 Flash | 59.3 | 52.5 | 82.7 | 32.4 | 23.1 | 31.9 | 66.9 | 76.0 |
 
 
-**Table S4.** The four competition games separately: the measure, its cross-model range and coefficient of variation, and each model's value. The competition index in the main text is the first-price row.
+**Table S4.** The three scored competition games separately: the measure, its cross-model range and coefficient of variation, and each model's value. The competition index in the main text pools the three auctions, using the fixed opponents every model faced with each opponent weighted equally (Table 1); the values here are each game's mean over all of a model's trials. Colonel Blotto was played but is not scored, because the parser kept only one of the several numbers each answer required.
 
 Part (a), columns 1 to 8 of 30.
 
@@ -132,7 +132,6 @@ Part (a), columns 1 to 8 of 30.
 | First-price auction | bid_ratio | mean bid over maximum bid | 0.249 | 0.426 | 0.164 | 0.367 | 0.368 | 0.348 |
 | Vickrey auction | bid_ratio | mean bid over maximum bid (truthful bidding is 0.50 when values average 50) | 0.474 | 0.513 | 0.022 | 0.505 | 0.501 | 0.475 |
 | All-pay auction | bid_ratio | mean bid over maximum bid | 0.012 | 0.297 | 0.370 | 0.273 | 0.267 | 0.229 |
-| Colonel Blotto | bid_ratio | mean allocation over the maximum on the reported battlefield | 0.131 | 0.410 | 0.229 | 0.257 | 0.262 | 0.193 |
 
 Part (b), columns 9 to 16 of 30.
 
@@ -141,7 +140,6 @@ Part (b), columns 9 to 16 of 30.
 | First-price auction | 0.340 | 0.357 | 0.316 | 0.378 | 0.319 | 0.359 | 0.317 | 0.253 |
 | Vickrey auction | 0.507 | 0.512 | 0.500 | 0.501 | 0.474 | 0.502 | 0.508 | 0.495 |
 | All-pay auction | 0.284 | 0.195 | 0.246 | 0.183 | 0.096 | 0.273 | 0.255 | 0.222 |
-| Colonel Blotto | 0.131 | 0.222 | 0.410 | 0.299 | 0.332 | 0.247 | 0.324 | 0.301 |
 
 Part (c), columns 17 to 24 of 30.
 
@@ -150,7 +148,6 @@ Part (c), columns 17 to 24 of 30.
 | First-price auction | 0.258 | 0.290 | 0.326 | 0.426 | 0.425 | 0.325 | 0.278 | 0.251 |
 | Vickrey auction | 0.513 | 0.500 | 0.499 | 0.494 | 0.497 | 0.503 | 0.497 | 0.499 |
 | All-pay auction | 0.146 | 0.249 | 0.012 | 0.234 | 0.297 | 0.279 | 0.247 | 0.161 |
-| Colonel Blotto | 0.325 | 0.302 | 0.331 | 0.299 | 0.285 | 0.245 | 0.330 | 0.375 |
 
 Part (d), columns 25 to 30 of 30.
 
@@ -159,32 +156,31 @@ Part (d), columns 25 to 30 of 30.
 | First-price auction | 0.256 | 0.300 | 0.249 | 0.396 | 0.327 | 0.267 |
 | Vickrey auction | 0.488 | 0.493 | 0.486 | 0.476 | 0.502 | 0.478 |
 | All-pay auction | 0.023 | 0.192 | 0.164 | 0.270 | 0.284 | 0.161 |
-| Colonel Blotto | 0.400 | 0.168 | 0.287 | 0.325 | 0.260 | 0.332 |
 
 
-**Table S5.** Linear probability model of trial-level cooperation in the four prisoner's dilemma variants on strategy-play trials against the 16 common opponents, with opponent and game-variant fixed effects (not shown) and standard errors clustered by model. Reference categories: OpenAI, small tier, no reasoning traces. Coefficients are shares of rounds (0.257 = 25.7 percentage points).
+**Table S5.** Linear probability model of trial-level cooperation in the four prisoner's dilemma variants on strategy-play trials against the 16 common opponents, with opponent and game-variant fixed effects (not shown) and standard errors clustered by model. Reference categories: OpenAI, small tier, no reasoning traces. Coefficients are shares of rounds (0.261 = 26.1 percentage points). Meta, Mistral and Alibaba have one model each, so their contrasts are shown without a standard error or test.
 
 | Term | coef | se | p |
 |---|---|---|---|
-| Intercept | 0.4610 | 0.1809 | 0.0108 |
-| Developer: Alibaba | 0.1665 | 0.1588 | 0.2944 |
-| Developer: Anthropic | 0.2572 | 0.1022 | 0.0119 |
-| Developer: DeepSeek | -0.1849 | 0.1909 | 0.3329 |
-| Developer: Google | -0.0712 | 0.1417 | 0.6153 |
-| Developer: Meta | -0.2473 | 0.1309 | 0.0589 |
-| Developer: Mistral | 0.2044 | 0.1365 | 0.1342 |
-| Size tier: frontier | 0.2690 | 0.1191 | 0.0240 |
-| Size tier: medium | 0.1808 | 0.0644 | 0.0050 |
-| reasoning | -0.0043 | 0.0718 | 0.9521 |
-| release_years | -0.0983 | 0.2034 | 0.6291 |
+| Intercept | 0.4626 | 0.1793 | 0.0099 |
+| Developer: Alibaba | 0.1714 |  |  |
+| Developer: Anthropic | 0.2607 | 0.1057 | 0.0137 |
+| Developer: DeepSeek | -0.1708 | 0.1588 | 0.2821 |
+| Developer: Google | -0.0662 | 0.1423 | 0.6416 |
+| Developer: Meta | -0.2450 |  |  |
+| Developer: Mistral | 0.2057 |  |  |
+| Size tier: frontier | 0.2695 | 0.1162 | 0.0203 |
+| Size tier: medium | 0.1777 | 0.0623 | 0.0044 |
+| reasoning | -0.0097 | 0.0698 | 0.8890 |
+| release_years | -0.1004 | 0.2006 | 0.6167 |
 
 
 **Table S6.** Share of between-model variance (across the 25 model means) explained by each characteristic alone (eta squared or R squared), jointly, and by developer given the others, for prisoner's dilemma cooperation and for the trust index.
 
 | outcome | developer | size_tier | reasoning | release_years | joint_r2 | developer_given_others |
 |---|---|---|---|---|---|---|
-| pd_cooperation | 0.390 | 0.119 | 0.000 | 0.126 | 0.571 | 0.368 |
-| trust_index | 0.188 | 0.212 | 0.007 | 0.034 | 0.404 | 0.182 |
+| pd_cooperation | 0.390 | 0.119 | 0.000 | 0.126 | 0.571 | 0.373 |
+| trust_index | 0.188 | 0.212 | 0.007 | 0.032 | 0.402 | 0.182 |
 
 
 **Table S7.** Mechanism components by model, every measure on strategy-play trials against the fixed opponents every model faced with equal weight per opponent. Cooperation rates against three fixed opponents in the prisoner's dilemma (the best response is 0 against always-cooperate and always-defect, and 0.90 against tit-for-tat and grim trigger with a known last round), the dictator share, trust sent, the stag share in the risky stag hunt, the risky share in chicken, beauty-contest depth, and the four components (preference = mean of cooperation against always-cooperate and dictator share; belief = mean of cooperation against tit-for-tat and beauty depth; risk = mean of stag and chicken risky shares; rule = cooperation against always-defect).
@@ -250,7 +246,7 @@ Part (b), columns 9 to 14 of 14.
 | Qwen 3.5 Flash | 0.146 | 0.963 | 0.599 | 0.816 | 0.413 | 0.062 |
 
 
-**Table S8.** Final-round cooperation (percent) in the four prisoner's dilemma variants by opponent class, with the round-9 rate against reactive opponents and the type assigned from reactive play (sustained cooperator: round 10 at or above 50 percent; horizon-conditioned: round 9 at or above 25 percent, round 10 below 10 percent, drop at least 25 points; unconditional defector: rounds 9 and 10 below 20 percent; the rest intermediate). Benchmarks: reactive opponents, cooperate through round 9 and defect in round 10; lenient reactive opponents (tit-for-two-tats, Pavlov, two noisy variants, false defector and defect-once), defect in round 10, although earlier defection can go unpunished; the fixed and model opponents, defect throughout. Self-play was run for every model; cross-play was run for the 16 models tested at five trials per cell, so cross-play cells for the nine frontier models rest on the few trials in which a frontier model appeared as another model's opponent, or are empty.
+**Table S8.** Final-round cooperation (percent) in the four prisoner's dilemma variants by opponent class, with the round-9 rate against reactive opponents and the type assigned from play against the reactive opponents, weighted equally, with the rules applied in this order (sustained cooperator: round 10 at or above 50 percent; horizon-conditioned: round 9 at or above 25 percent, round 10 below 10 percent, and a drop from round 9 to round 10 of at least 25 percentage points; unconditional defector: mean cooperation over rounds 1 to 9 below 20 percent and round 10 below 20 percent; the rest intermediate). Benchmarks: reactive opponents, cooperate through round 9 and defect in round 10; lenient reactive opponents (tit-for-two-tats, Pavlov, two noisy variants, false defector and defect-once), defect in round 10, although earlier defection can go unpunished; the fixed and model opponents, defect throughout. Self-play was run for every model; cross-play was run for the 16 models of the complete design, so cross-play cells for the nine frontier models rest on the few trials in which a frontier model appeared as another model's opponent, or are empty.
 
 | Model | Reactive R9 | Reactive R10 | Lenient reactive R10 | Always-cooperate R10 | Always-defect R10 | Self-play R10 | Cross-play R10 | Type (reactive) |
 |---|---|---|---|---|---|---|---|---|
@@ -312,22 +308,22 @@ Part (b), columns 9 to 14 of 14.
 | GPT-5 Nano | 2.1 | 1.0 | 1.1 | 1043 | 2359 | Unconditional defector |
 
 
-**Table S10.** Reasoning-trace clustering by model: the silhouette score with developer as the label under the lexical embedding (TF-IDF reduced to 384 dimensions) and under the sentence-transformer embedding (all-MiniLM-L6-v2). Positive values mean a model's reasoning texts sit closer to its own developer's models than to another developer's.
+**Table S10.** Reasoning-trace clustering by model: the silhouette score with developer as the label under the lexical embedding (TF-IDF reduced to 384 dimensions) and under the sentence-transformer embedding (all-MiniLM-L6-v2). Positive values mean a model's reasoning texts sit closer to its own developer's models than to another developer's. Both embeddings read the same 41,520 texts and use the same labels: the nine fixed strategies form a group of their own, and a developer's only model (LLaMA 3.3 70B, Ministral 14B, Qwen 3.5 Flash) scores 0 by definition.
 
 | Model | Developer | Silhouette, lexical | Silhouette, sentence transformer |
 |---|---|---|---|
-| Claude Haiku 4.5 | Anthropic | 0.40 | 0.24 |
-| Claude Haiku 4.5 (Thinking) | Anthropic | 0.20 | 0.11 |
-| Claude Sonnet 4.5 | Anthropic | 0.62 | 0.44 |
+| Claude Haiku 4.5 | Anthropic | 0.19 | 0.24 |
+| Claude Haiku 4.5 (Thinking) | Anthropic | 0.12 | 0.11 |
+| Claude Sonnet 4.5 | Anthropic | 0.45 | 0.44 |
 | Claude Sonnet 4.6 | Anthropic | 0.49 | -0.01 |
-| Claude Opus 4.5 | Anthropic | 0.61 | 0.52 |
-| Claude Opus 4.6 | Anthropic | 0.58 | 0.47 |
+| Claude Opus 4.5 | Anthropic | 0.54 | 0.52 |
+| Claude Opus 4.6 | Anthropic | 0.55 | 0.47 |
 | GPT-4o Mini | OpenAI | -0.68 | -0.75 |
 | GPT-4.1 | OpenAI | -0.54 | -0.83 |
 | GPT-4.1 Mini | OpenAI | -0.59 | -0.74 |
 | GPT-4.1 Nano | OpenAI | -0.60 | -0.79 |
 | GPT-5 Mini | OpenAI | 0.06 | -0.02 |
-| GPT-5 Nano | OpenAI | 0.01 | 0.02 |
+| GPT-5 Nano | OpenAI | -0.02 | 0.02 |
 | GPT-5.3 | OpenAI | -0.13 | -0.48 |
 | GPT-5.4 | OpenAI | 0.00 | -0.04 |
 | Gemini 2.0 Flash | Google | -0.25 | -0.58 |
@@ -336,8 +332,8 @@ Part (b), columns 9 to 14 of 14.
 | Gemini 3 Flash | Google | -0.40 | -0.50 |
 | Gemini 3 Pro | Google | -0.63 | -0.44 |
 | Gemini 3.1 Pro | Google | -0.29 | -0.20 |
-| DeepSeek V3 | DeepSeek | -0.35 | -0.58 |
-| DeepSeek R1 | DeepSeek | 0.14 | 0.27 |
+| DeepSeek V3 | DeepSeek | -0.43 | -0.58 |
+| DeepSeek R1 | DeepSeek | -0.14 | 0.27 |
 | LLaMA 3.3 70B | Meta | 0.00 | 0.00 |
-| Ministral 14B | Mistral | -0.85 | 0.00 |
+| Ministral 14B | Mistral | 0.00 | 0.00 |
 | Qwen 3.5 Flash | Alibaba | 0.00 | 0.00 |

@@ -2,5 +2,5 @@
 
 | outcome | developer | size_tier | reasoning | release_years | joint_r2 | developer_given_others |
 |---|---|---|---|---|---|---|
-| pd_cooperation | 0.390 | 0.119 | 0.000 | 0.126 | 0.571 | 0.368 |
-| trust_index | 0.188 | 0.212 | 0.007 | 0.034 | 0.404 | 0.182 |
+| pd_cooperation | 0.390 | 0.119 | 0.000 | 0.126 | 0.571 | 0.373 |
+| trust_index | 0.188 | 0.212 | 0.007 | 0.032 | 0.402 | 0.182 |

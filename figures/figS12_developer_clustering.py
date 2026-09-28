@@ -1,161 +1,92 @@
-"""Supplementary Fig. 12: developer clustering of the reasoning text. Panel a, UMAP projection of the embedded
-reasoning texts with a density contour per developer and each model's centroid; panel b, each model's silhouette
-score with developer as the label.
+"""Supplementary Fig. 12: reasoning-text centroids and per-model silhouette scores (lexical embedding).
 
-Reads summary_data/reasoning_text_clustering/trace_umap.csv, centroid_umap.csv and hodoscope_summary.json, and writes
-figures/out/figS12_developer_clustering.pdf and .png.
+Reads summary_data/reasoning_text_clustering/, as written by analysis/reasoning_text_clustering.py: centroid_pca.csv
+for panel a (each model's centroid; the fixed strategies' centroids that fall inside the panel are drawn in gray),
+hodoscope_summary.json for panel b. The two-dimensional coordinates are the first two principal components of the
+384-dimensional text vectors (the files named umap hold the clustering's PCA fallback, because umap-learn was not
+installed when they were computed; centroid_umap.csv equals centroid_pca.csv). The silhouette uses developer as the
+label, with the nine fixed strategies as a group of their own; the labels are checked by
+analysis/check_developer_labels.py.
 
     python figures/figS12_developer_clustering.py
 """
-import numpy as np
-import matplotlib.colors as mcolors
-from scipy.stats import gaussian_kde
+import json
+from pathlib import Path
 
-from compact_style import C, CLUSTERING, DOUBLE, PROV_LABEL, PROV_ORDER, RC, _c, _lab, _llm, _prov, _s, _save, _sort, plt, read_clustering_summary, read_csv
+import numpy as np
+import pandas as pd
+from matplotlib.lines import Line2D
+
+import figlib
+from figlib import plt
+
+from common import DEVELOPER_ORDER, MODELS, ORDER
+
+SOURCE = Path(figlib.CLUSTERING)
 
 
 def build():
-    """Panel a: UMAP embedding with per-provider KDE density contours and
-    centroid markers.  Panel b: per-model silhouette scores (horizontal bars).
-    """
-    print("Supplementary Fig. 12, developer clustering")
+    figlib.style()
+    summary = json.load(open(SOURCE / "hodoscope_summary.json", encoding="utf-8"))
+    separation = summary["provider_separation"]
+    labels = separation["provider_labels"]
+    for key in ORDER:
+        if labels.get(key) != MODELS[key][1].lower():
+            raise ValueError(f"{key} is labelled {labels.get(key)!r} in the clustering, not {MODELS[key][1]}")
+    silhouettes = separation["per_model_silhouette"]
+    centroids = pd.read_csv(SOURCE / "centroid_pca.csv")
 
-    hodo = {"summary": read_clustering_summary(),
-            "centroid_umap": read_csv(CLUSTERING / "centroid_umap.csv")}
-    traces = read_csv(CLUSTERING / "trace_umap.csv")
+    fig = plt.figure(figsize=(7.2, 4.0))
+    panel_a = fig.add_axes([0.075, 0.26, 0.47, 0.67])
+    panel_b = fig.add_axes([0.745, 0.26, 0.235, 0.67])
 
-    with plt.rc_context(RC):
-        fig, (ax1, ax2) = plt.subplots(
-            1, 2, figsize=(DOUBLE, 3.2),
-            gridspec_kw={"width_ratios": [1.4, 1]})
+    llm = centroids.loc[centroids.model_key.isin(MODELS)]
+    margin = 0.08
+    x_lim = (llm.x.min() - margin, llm.x.max() + margin)
+    y_lim = (llm.y.min() - margin, llm.y.max() + margin)
+    # panel a shows the centroids only: a density of the individual texts would be cut at this window
+    strategies_drawn = 0
+    for row in centroids.itertuples():
+        if row.model_key in MODELS:
+            panel_a.scatter(row.x, row.y, s=26, color=figlib.color(MODELS[row.model_key][1]), edgecolor="white", linewidth=0.4, zorder=3)
+        elif x_lim[0] <= row.x <= x_lim[1] and y_lim[0] <= row.y <= y_lim[1]:
+            panel_a.scatter(row.x, row.y, marker="D", s=18, color=figlib.PALETTE["strategy"], edgecolor="white", linewidth=0.3, zorder=2)
+            strategies_drawn += 1
+    panel_a.set(xlim=x_lim, ylim=y_lim, xlabel="Principal component 1", ylabel="Principal component 2")
+    # ticks strictly inside the limits, so the corner labels of the two axes never meet
+    panel_a.set_xticks([t for t in np.arange(-0.4, 0.41, 0.1) if x_lim[0] + 0.02 < t < x_lim[1]])
+    panel_a.set_yticks([t for t in np.arange(-0.4, 0.41, 0.05) if y_lim[0] + 0.02 < t < y_lim[1]])
+    panel_a.text(-0.01, 1.03, "a", transform=panel_a.transAxes, fontsize=8, weight="bold", va="bottom")
+    handles = [Line2D([], [], marker="o", linestyle="none", color=figlib.color(d), label=d, markersize=4) for d in DEVELOPER_ORDER]
+    if strategies_drawn:
+        handles.append(Line2D([], [], marker="D", linestyle="none", color=figlib.PALETTE["strategy"], label="Fixed strategies", markersize=3.5))
+    fig.legend(handles=handles, loc="lower left", bbox_to_anchor=(0.06, 0.06), ncol=4, frameon=False, columnspacing=1.2, handletextpad=0.3)
 
-        # ── a: UMAP with density ──
-        _lab(ax1, "a")
-
-        centroids = hodo["centroid_umap"]
-        prov_pts = {}  # provider -> list of (x, y) from centroids
-
-        # KDE density contours from the individual reasoning texts
-        if traces:
-            prov_trace_pts = {}
-            for t in traces:
-                mk = t.get("model_key", "")
-                p = _prov(mk) if mk else t.get("provider", "").lower()
-                prov_trace_pts.setdefault(p, {"x": [], "y": []})
-                prov_trace_pts[p]["x"].append(t["x"])
-                prov_trace_pts[p]["y"].append(t["y"])
-
-            # Use LLM-only traces for the density bounds (exclude strategy outliers)
-            llm_tx = [t["x"] for t in traces if _llm(t.get("model_key", ""))]
-            llm_ty = [t["y"] for t in traces if _llm(t.get("model_key", ""))]
-            if llm_tx:
-                pad = 0.15
-                xmin = np.percentile(llm_tx, 1) - pad
-                xmax = np.percentile(llm_tx, 99) + pad
-                ymin = np.percentile(llm_ty, 1) - pad
-                ymax = np.percentile(llm_ty, 99) + pad
-            else:
-                all_x = [t["x"] for t in traces]
-                all_y = [t["y"] for t in traces]
-                pad = 0.5
-                xmin, xmax = min(all_x) - pad, max(all_x) + pad
-                ymin, ymax = min(all_y) - pad, max(all_y) + pad
-            xx, yy = np.mgrid[xmin:xmax:150j, ymin:ymax:150j]
-            positions = np.vstack([xx.ravel(), yy.ravel()])
-
-            for p in PROV_ORDER:
-                if p not in prov_trace_pts or len(prov_trace_pts[p]["x"]) < 20:
-                    continue
-                col = C[p]
-                rgb = mcolors.to_rgb(col)
-                vals = np.vstack([prov_trace_pts[p]["x"],
-                                  prov_trace_pts[p]["y"]])
-                try:
-                    kde = gaussian_kde(vals, bw_method=0.35)
-                    zz = kde(positions).reshape(xx.shape)
-                    zz_norm = zz / zz.max() if zz.max() > 0 else zz
-                    cmap = mcolors.LinearSegmentedColormap.from_list(
-                        f"kde6_{p}",
-                        [(rgb[0], rgb[1], rgb[2], 0.0),
-                         (rgb[0], rgb[1], rgb[2], 0.18)],
-                        N=64)
-                    ax1.contourf(xx, yy, zz_norm,
-                                 levels=np.linspace(0.2, 1.0, 5),
-                                 cmap=cmap, zorder=0)
-                    ax1.contour(xx, yy, zz_norm,
-                                levels=np.linspace(0.4, 0.9, 3),
-                                colors=[col], linewidths=0.25,
-                                alpha=0.3, zorder=0)
-                except Exception:
-                    pass
-
-        for item in centroids:
-            key = item["model_key"]
-            x, y = item["x"], item["y"]
-            p = _prov(key)
-
-            if not _llm(key):
-                ax1.plot(x, y, "D", color=C["strategy"], ms=3,
-                         alpha=0.35, mew=0, zorder=1)
-            else:
-                col = C.get(p, C["strategy"])
-                ax1.plot(x, y, "o", color=col, ms=5.5,
-                         mec="white", mew=0.4, zorder=3)
-                prov_pts.setdefault(p, []).append((x, y))
-
-        # Zoom into LLM density region (exclude extreme strategy outliers)
-        llm_cx = [item["x"] for item in centroids if _llm(item["model_key"])]
-        llm_cy = [item["y"] for item in centroids if _llm(item["model_key"])]
-        if llm_cx:
-            margin = 0.18
-            ax1.set_xlim(min(llm_cx) - margin, max(llm_cx) + margin)
-            ax1.set_ylim(min(llm_cy) - margin, max(llm_cy) + margin)
-
-        ax1.set_xlabel("UMAP 1")
-        ax1.set_ylabel("UMAP 2")
-
-        # Combined legend (providers + strategies)
-        provs_present = [p for p in PROV_ORDER if p in prov_pts]
-        hs = [ax1.plot([], [], "o", color=C[p], ms=3.5, ls="none",
-                       label=PROV_LABEL[p])[0] for p in provs_present]
-        hs.append(ax1.plot([], [], "D", color=C["strategy"], ms=3, ls="none",
-                           alpha=0.5, label="Strategies")[0])
-        ax1.legend(handles=hs, loc="lower left", fontsize=5, ncol=2)
-
-        # ── b: Silhouette ──
-        _lab(ax2, "b")
-
-        sil = hodo["summary"]["provider_separation"]["per_model_silhouette"]
-        llm_sil = {k: v for k, v in sil.items() if _llm(k)}
-        sk = _sort(list(llm_sil.keys()))
-        n = len(sk)
-
-        vals   = [llm_sil[k] for k in sk]
-        colors = [_c(k) for k in sk]
-
-        ax2.barh(range(n), vals, color=colors, height=0.72,
-                 edgecolor="white", linewidth=0.3, zorder=2)
-        ax2.axvline(0, color="#444444", lw=0.4, zorder=1)
-
-        ax2.set_yticks(range(n))
-        ax2.set_yticklabels([_s(k) for k in sk], fontsize=5)
-        ax2.set_xlabel("Silhouette score")
-        ax2.invert_yaxis()
-
-        for i, k in enumerate(sk):
-            ax2.get_yticklabels()[i].set_color(_c(k))
-
-        # Provider group separators
-        prev = None
-        for i, k in enumerate(sk):
-            p = _prov(k)
-            if prev is not None and p != prev:
-                ax2.axhline(i - 0.5, color="#CCCCCC", lw=0.4)
-            prev = p
-
-        fig.tight_layout(w_pad=2.0)
-        _save(fig, "figS12_developer_clustering")
+    keys = sorted(ORDER, key=lambda k: (DEVELOPER_ORDER.index(MODELS[k][1]), ORDER.index(k)))
+    values = [silhouettes[k] for k in keys]
+    rows = np.arange(len(keys))
+    panel_b.barh(rows, values, height=0.72, color=[figlib.color(MODELS[k][1]) for k in keys], edgecolor="none", zorder=2)
+    panel_b.axvline(0, color=figlib.PALETTE["ink"], linewidth=0.5, zorder=3)
+    panel_b.set_ylim(len(keys) - 0.4, -0.6)
+    panel_b.set_yticks(rows, [MODELS[k][0] for k in keys], fontsize=6)
+    panel_b.tick_params(axis="y", length=0, pad=3)
+    for tick, key in zip(panel_b.get_yticklabels(), keys):
+        tick.set_color(figlib.color(MODELS[key][1]))
+    developers = [MODELS[k][1] for k in keys]
+    for i in range(1, len(keys)):
+        if developers[i] != developers[i - 1]:
+            panel_b.axhline(i - 0.5, color=figlib.PALETTE["separator"], linewidth=0.6, zorder=1)
+    panel_b.set_xlim(-0.8, 0.8)
+    panel_b.set_xticks([-0.8, -0.4, 0, 0.4, 0.8])
+    panel_b.set_xlabel("Silhouette score")
+    panel_b.spines["left"].set_visible(False)
+    panel_b.text(-0.75, 1.03, "b", transform=panel_b.transAxes, fontsize=8, weight="bold", va="bottom")
+    fig.text(0.5, 0.012, f"Developer as the group label, fixed strategies as their own group; overall silhouette {separation['silhouette_score']:.4f}.\n"
+             "LLaMA 3.3 70B, Ministral 14B and Qwen 3.5 Flash are their developers' only models, so each scores 0.",
+             ha="center", va="bottom", fontsize=6, color=figlib.PALETTE["benchmark"], linespacing=1.4)
+    return fig
 
 
 if __name__ == "__main__":
-    build()
+    fig = build()
+    figlib.save(fig, "figS12_developer_clustering")

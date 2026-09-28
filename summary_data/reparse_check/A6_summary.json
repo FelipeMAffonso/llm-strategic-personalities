@@ -1,0 +1,113 @@
+{
+  "best_response_rate_vs_tft": 0.9,
+  "sampling_basis": "strategy-play against the fixed opponents every model faced, equal weight per opponent",
+  "common_opponents_per_game": {
+    "dictator": 5,
+    "trust_berg": 3,
+    "stag_hunt_risky": 9,
+    "chicken": 13,
+    "beauty_contest_23": 3
+  },
+  "developer_means": {
+    "preference_component": {
+      "Anthropic": 0.683,
+      "OpenAI": 0.37,
+      "Google": 0.432,
+      "DeepSeek": 0.4,
+      "Meta": 0.271,
+      "Mistral": 0.472,
+      "Alibaba": 0.599
+    },
+    "rule_component": {
+      "Anthropic": 0.099,
+      "OpenAI": 0.087,
+      "Google": 0.071,
+      "DeepSeek": 0.092,
+      "Meta": 0.254,
+      "Mistral": 0.194,
+      "Alibaba": 0.062
+    },
+    "belief_component": {
+      "Anthropic": 0.856,
+      "OpenAI": 0.66,
+      "Google": 0.729,
+      "DeepSeek": 0.734,
+      "Meta": 0.528,
+      "Mistral": 0.384,
+      "Alibaba": 0.816
+    },
+    "risk_component": {
+      "Anthropic": 0.381,
+      "OpenAI": 0.367,
+      "Google": 0.386,
+      "DeepSeek": 0.354,
+      "Meta": 0.42,
+      "Mistral": 0.449,
+      "Alibaba": 0.413
+    },
+    "coop_vs_always_cooperate": {
+      "Anthropic": 0.875,
+      "OpenAI": 0.369,
+      "Google": 0.578,
+      "DeepSeek": 0.488,
+      "Meta": 0.1,
+      "Mistral": 0.44,
+      "Alibaba": 0.708
+    },
+    "coop_vs_always_defect": {
+      "Anthropic": 0.099,
+      "OpenAI": 0.087,
+      "Google": 0.071,
+      "DeepSeek": 0.092,
+      "Meta": 0.254,
+      "Mistral": 0.194,
+      "Alibaba": 0.062
+    },
+    "coop_vs_tit_for_tat": {
+      "Anthropic": 0.881,
+      "OpenAI": 0.394,
+      "Google": 0.521,
+      "DeepSeek": 0.503,
+      "Meta": 0.18,
+      "Mistral": 0.382,
+      "Alibaba": 0.669
+    }
+  },
+  "developer_tests": {
+    "preference_component": {
+      "kruskal_H": 8.15,
+      "p": 0.017,
+      "eta_squared_between_developers": 0.392
+    },
+    "rule_component": {
+      "kruskal_H": 1.99,
+      "p": 0.3696,
+      "eta_squared_between_developers": 0.057
+    },
+    "belief_component": {
+      "kruskal_H": 5.46,
+      "p": 0.0654,
+      "eta_squared_between_developers": 0.264
+    },
+    "risk_component": {
+      "kruskal_H": 0.13,
+      "p": 0.9355,
+      "eta_squared_between_developers": 0.026
+    },
+    "coop_vs_always_cooperate": {
+      "kruskal_H": 8.32,
+      "p": 0.0156,
+      "eta_squared_between_developers": 0.423
+    },
+    "coop_vs_always_defect": {
+      "kruskal_H": 1.99,
+      "p": 0.3696,
+      "eta_squared_between_developers": 0.057
+    },
+    "coop_vs_tit_for_tat": {
+      "kruskal_H": 8.59,
+      "p": 0.0136,
+      "eta_squared_between_developers": 0.355
+    }
+  }
+}

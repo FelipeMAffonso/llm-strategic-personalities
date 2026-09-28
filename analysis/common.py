@@ -53,8 +53,9 @@ MODELS = {
     "qwen3.5-flash": ("Qwen 3.5 Flash", "Alibaba", "Qwen", "medium", False),
 }
 ORDER = list(MODELS.keys())
-# The nine frontier models, run at one trial per cell with strategy-play and self-play (labelled G in Supplementary
-# Table S1); the other 16 models were run at five trials per cell with full cross-play (labelled F).
+# The nine frontier models played fixed opponents and themselves, with one trial in most cells (labelled G in
+# Supplementary Table S1); the other 16 models played all three matchup types, including full cross-play, with five
+# trials in most cells (labelled F).
 FRONTIER_MODELS = {"claude-sonnet-4.5", "claude-sonnet-4.6", "claude-opus-4.5", "claude-opus-4.6", "gpt-4.1", "gpt-5.3",
                    "gpt-5.4", "gemini-3-pro", "gemini-3.1-pro"}
 DEVELOPER_ORDER = ["Anthropic", "OpenAI", "Google", "DeepSeek", "Meta", "Mistral", "Alibaba"]
